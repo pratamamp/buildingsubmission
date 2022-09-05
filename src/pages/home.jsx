@@ -1,6 +1,7 @@
 import React from "react";
 import bgImage from "/home-bg.jpeg";
 import logo from "/logodki.svg";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -19,17 +20,17 @@ function Home() {
             <img src={logo} alt="logo dki" className=" object-contain" />
           </div>
           <ul className="flex space-x-4 items-center font-poppins text-sm text-white">
-            <li className=" border-b-2">
-              <button className="pb-2">Beranda</button>
+            <li className=" border-b-2 pb-2">
+              <button>Beranda</button>
             </li>
-            <li className="">
-              <button className="pb-2">Submit Izin</button>
+            <li className="pb-2">
+              <Link to="/submission">Submit Izin</Link>
             </li>
-            <li className="">
-              <button className="pb-2">Tata Cara</button>
+            <li className="pb-2">
+              <Link to="#">Tata Cara</Link>
             </li>
-            <li className="">
-              <button className="pb-2">Kontak Kami</button>
+            <li className="pb-2">
+              <Link to="#">Kontak kami</Link>
             </li>
           </ul>
         </div>
@@ -38,7 +39,7 @@ function Home() {
         </button>
       </div>
       <div className="flex justify-center items-center h-[calc(100vh_-_7rem)]">
-        <h2 className=" font-poppins text-7xl w-2/3 text-center text-white">
+        <h2 className=" font-bold font-poppins text-7xl w-2/3 text-center text-white">
           Persetujuan Bangunan Gedung
         </h2>
       </div>

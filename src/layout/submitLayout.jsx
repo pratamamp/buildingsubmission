@@ -1,0 +1,28 @@
+import React from "react";
+import { Outlet } from "react-router-dom";
+import logo from "/logodki.svg";
+
+function SubmitLayout() {
+  return (
+    <div className="relative">
+      {/* topbar */}
+      <div className="p-3 bg-[#3A5170] flex justify-between items-center">
+        <div className="flex space-x-10">
+          <div className="w-8 h-8">
+            <img src={logo} alt="logo dki" className="object-contain" />
+          </div>
+          <ul className="flex text-white space-x-5">
+            <li>Beranda</li>
+            <li>Submit Izin</li>
+            <li>Tata Cara</li>
+            <li>Kontak Kami</li>
+          </ul>
+        </div>
+      </div>
+      {/* Content */}
+      <Outlet />
+    </div>
+  );
+}
+
+export default SubmitLayout;
