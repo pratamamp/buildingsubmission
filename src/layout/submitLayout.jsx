@@ -18,8 +18,12 @@ function SubmitLayout() {
             <li>
               <Link to="/submission">Submit Izin</Link>
             </li>
-            <li>Tata Cara</li>
-            <li>Kontak Kami</li>
+            <li>
+              <Link to="#">Tata Cara</Link>
+            </li>
+            <li>
+              <Link to="#">Kontak Kami</Link>
+            </li>
           </ul>
         </div>
       </div>
