@@ -21,7 +21,7 @@ function Home() {
           </div>
           <ul className="flex space-x-4 items-center font-poppins text-sm text-white">
             <li className=" border-b-2 pb-2">
-              <button>Beranda</button>
+              <Link to="/">Beranda</Link>
             </li>
             <li className="pb-2">
               <Link to="/submission">Submit Izin</Link>

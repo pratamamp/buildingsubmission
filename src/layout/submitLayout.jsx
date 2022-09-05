@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import logo from "/logodki.svg";
 
 function SubmitLayout() {
@@ -12,8 +12,12 @@ function SubmitLayout() {
             <img src={logo} alt="logo dki" className="object-contain" />
           </div>
           <ul className="flex text-white space-x-5">
-            <li>Beranda</li>
-            <li>Submit Izin</li>
+            <li>
+              <Link to="/">Beranda</Link>
+            </li>
+            <li>
+              <Link to="/submission">Submit Izin</Link>
+            </li>
             <li>Tata Cara</li>
             <li>Kontak Kami</li>
           </ul>
