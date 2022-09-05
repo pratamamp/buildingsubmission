@@ -28,5 +28,4 @@ function SubmitLayout() {
     </div>
   );
 }
-
 export default SubmitLayout;
