@@ -1,10 +1,14 @@
-import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, Link, useParams } from "react-router-dom";
 import logo from "/logodki.svg";
 import bgImage from "/bg-transparent.png";
 import { BsCheckLg } from "react-icons/bs";
 
 function SubmitLayout() {
+  const params = useParams();
+  useEffect(() => {
+    console.log(params.id);
+  }, [params]);
   return (
     <div className="">
       {/* topbar */}
@@ -36,19 +40,19 @@ function SubmitLayout() {
             <div>
               <BsCheckLg className="w-3 h-3 text-gray-200" />
             </div>
-            <p2 className="text-gray-500">Form Pengajuan Izin</p2>
+            <p className="text-gray-500">Form Pengajuan Izin</p>
           </li>
           <li className="flex items-center space-x-2 stepper">
             <div>2</div>
-            <p2 className="text-gray-500">Pilih Persil</p2>
+            <p className="text-gray-500">Pilih Persil</p>
           </li>
           <li className="flex items-center space-x-2 stepper">
             <div>3</div>
-            <p2 className="text-gray-500">Upload GPA 3D</p2>
+            <p className="text-gray-500">Upload GPA 3D</p>
           </li>
           <li className="flex items-center space-x-2 stepper">
             <div>4</div>
-            <p2 className="text-gray-500">Pemeriksaan GPA</p2>
+            <p className="text-gray-500">Pemeriksaan GPA</p>
           </li>
         </ol>
       </div>
