@@ -1,7 +1,19 @@
 .MapView {
-    /* position: relative;
+  /* position: relative;
     display: block; */
-    height: 500px;
-    width: 100%;
-  }
-  
+  height: 500px;
+  width: 100%;
+}
+
+.esri-search {
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+.esri-search__container .esri-widget--button {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.esri-search__input {
+  border-radius: 6px;
+}

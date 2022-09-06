@@ -5,6 +5,7 @@ import esriConfig from "@arcgis/core/config";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Search from "@arcgis/core/widgets/Search";
 
 export const PersilMap = () => {
   esriConfig.apiKey =
@@ -40,7 +41,8 @@ export const PersilMap = () => {
     };
 
     const persilFeature = new FeatureLayer({
-      url: "https://tataruang.jakarta.go.id/server/rest/services/peta_operasional/Informasi_Rencana_Kota_DKI_Jakarta_View/FeatureServer/3",
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
+      // url: "https://tataruang.jakarta.go.id/server/rest/services/peta_operasional/Informasi_Rencana_Kota_DKI_Jakarta_View/FeatureServer/3",
       popupTemplate: popUpTemplate,
       outFields: ["*"],
     });
@@ -51,10 +53,17 @@ export const PersilMap = () => {
     });
     const view = new MapView({
       map: map,
-      center: [106.8271528, -6.1753924], // Longitude, latitude
-      zoom: 16, // Zoom level
+      center: [106.79752143200005, -6.255], // Longitude, latitude
+      zoom: 18, // Zoom level
       container: mapRef.current,
     });
+
+    const search = new Search({
+      view: view,
+      placeholder: "Cari Lokasi Persil Tanah..."
+    });
+
+    view.ui.add(search, "top-right")
 
     view.on("click", function (event) {
       view.hitTest(event).then(function (response) {
@@ -69,7 +78,7 @@ export const PersilMap = () => {
           PSL: attributes.PSL,
           Tipe: attributes.TIPE,
         };
-        console.log(persilInfo);
+        console.log(attributes);
       });
     });
 
