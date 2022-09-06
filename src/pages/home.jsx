@@ -43,7 +43,7 @@ function Home() {
           Persetujuan Bangunan Gedung
         </h2>
       </div>
-      <div className="absolute bg-gradient-to-b from-[#3883ed] to-white/0 inset-0 -z-10 h-1/4" />
+      <div className="bg-gradient-to-b from-[#3883ed] to-white/0 inset-0 -z-10 h-1/4" />
     </>
   );
 }
