@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .stepper-active div {
+    @apply h-8 w-8 rounded-full bg-[#12519E] flex items-center justify-center text-gray-200;
+  }
+  .stepper div {
+    @apply flex items-center justify-center text-[#12519E] h-8 w-8 rounded-full bg-[#12519E]/10;
+  }
+}

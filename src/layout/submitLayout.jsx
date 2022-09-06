@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import logo from "/logodki.svg";
 import bgImage from "/bg-transparent.png";
+import { BsCheckLg } from "react-icons/bs";
 
 function SubmitLayout() {
   return (
@@ -30,8 +31,25 @@ function SubmitLayout() {
       </div>
 
       <div className="border-b-2 h-24 w-full">
-        <ol className="flex items-center justify-center h-full">
-          <li className="w-8 h-8 rounded-full bg-[#12519E]"></li>
+        <ol className="flex items-center space-x-5 justify-center h-full font-poppins text-sm">
+          <li className="flex items-center space-x-2 stepper-active">
+            <div>
+              <BsCheckLg className="w-3 h-3 text-gray-200" />
+            </div>
+            <p2 className="text-gray-500">Form Pengajuan Izin</p2>
+          </li>
+          <li className="flex items-center space-x-2 stepper">
+            <div>2</div>
+            <p2 className="text-gray-500">Pilih Persil</p2>
+          </li>
+          <li className="flex items-center space-x-2 stepper">
+            <div>3</div>
+            <p2 className="text-gray-500">Upload GPA 3D</p2>
+          </li>
+          <li className="flex items-center space-x-2 stepper">
+            <div>4</div>
+            <p2 className="text-gray-500">Pemeriksaan GPA</p2>
+          </li>
         </ol>
       </div>
 
