@@ -1,44 +1,38 @@
 import "@arcgis/core/assets/esri/themes/light/main.css";
 import React, { useRef, useEffect } from "react";
+import esriConfig from "@arcgis/core/config";
 import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
+import SceneLayer from "@arcgis/core/layers/SceneLayer";
+
 
 export function BuildingLayer() {
+  esriConfig.apiKey =
+    "AAPK4b3895d07794469dbd57a083f1ac4fa52nP3iH2KjKBQ2wRSVFdz17o7vuCF-lo_yMcmcIDhijUKcuRGC_oNSu5JKRBZDjYn";
   const divRef = useRef();
   const buildingLayer = new BuildingSceneLayer({
     // url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
-    url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BSL__4326__US_Redlands__EsriAdminBldg_PublicDemo/SceneServer",
-    title: "Building Scene Layer - Test",
+    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Rusun_GemawangBlokAGROUND/SceneServer",
+    // title: "Building Scene Layer - Test",
   });
   const webscene = new WebScene({
+    // basemap: "arcgis-topographic"
     portalItem: {
       id: "c7470b0e4e4c44288cf287d658155300",
     },
   });
   const excludedLayer = [];
-
-  // const map = new Map({
-  //   basemap: "topo-vector",
-  //   ground: "world-elevation",
-  //   layers: [buildingLayer],
-  // });
   useEffect(() => {
     new SceneView({
       map: webscene,
-      // camera: {
-      //   // position: [110.35995, -7.79149, 160],
-      //   tilt: 55,
-      //   heading: 25,
-      // },
+      camera: {
+        position: [106.79752143200005, -6.255, 160],
+        tilt: 55,
+        heading: 25,
+      },
       container: divRef.current,
-      // extent: {
-      //   xmin: 110.36006011574685,
-      //   xmax: 110.36031956177732,
-      //   ymin: -7.791125818872307,
-      //   ymax: -7.790791851033849,
-      // },
     }).when((currentView) => {
       webscene.layers.add(buildingLayer);
       const layerList = new LayerList({
@@ -54,6 +48,7 @@ export function BuildingLayer() {
               layer.visible = true;
               break;
             case "Overview":
+              currentView.goTo(layer.fullExtent)
             case "Rooms":
               layer.visible = false;
               break;
