@@ -11,8 +11,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/submission" element={<SubmitLayout />}>
         <Route index element={<SubmissionPage />} />
-        <Route path="/submission/search" element={<SearchPersil />} />
-        <Route path="/submission/upload" element={<UploadFiles />} />
+        <Route path="/submission/2" element={<SearchPersil />} />
+        <Route path="/submission/3" element={<UploadFiles />} />
       </Route>
     </Routes>
   );
