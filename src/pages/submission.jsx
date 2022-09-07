@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function SubmissionPage() {
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/submission/2");
+  }
+
   return (
     <div className="w-full h-[calc(100vh_-_9.5rem)] flex justify-center items-center">
       <div className="w-1/3 h-5/6 bg-white rounded-lg shadow-lg shadow-gray-600 p-9 font-poppins">
@@ -9,7 +17,10 @@ function SubmissionPage() {
           Lengkapilah data pemohon imb dibawah ini
         </p>
 
-        <form className="mt-10 justify-between flex flex-col items-center text-xs space-y-2">
+        <form
+          className="mt-10 justify-between flex flex-col items-center text-xs space-y-2"
+          onSubmit={handleSubmit}
+        >
           <div className="w-full">
             <label htmlFor="name">
               Nama Pemohon
