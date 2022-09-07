@@ -5,8 +5,7 @@ import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
-import SceneLayer from "@arcgis/core/layers/SceneLayer";
-
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 export function BuildingLayer() {
   esriConfig.apiKey =
@@ -17,11 +16,15 @@ export function BuildingLayer() {
     url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Rusun_GemawangBlokAGROUND/SceneServer",
     // title: "Building Scene Layer - Test",
   });
+  const persilFeature = new FeatureLayer({
+    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
+  });
   const webscene = new WebScene({
     // basemap: "arcgis-topographic"
     portalItem: {
       id: "c7470b0e4e4c44288cf287d658155300",
     },
+    layers: [persilFeature],
   });
   const excludedLayer = [];
   useEffect(() => {
@@ -48,7 +51,9 @@ export function BuildingLayer() {
               layer.visible = true;
               break;
             case "Overview":
-              currentView.goTo(layer.fullExtent)
+              layer.visible = false;
+              currentView.goTo(layer.fullExtent);
+              break;
             case "Rooms":
               layer.visible = false;
               break;
@@ -62,5 +67,7 @@ export function BuildingLayer() {
       });
     });
   }, []);
-  return <div className="w-full h-[calc(100vh-2rem)] py-5 my-5" ref={divRef}></div>;
+  return (
+    <div className="w-full h-[calc(100vh-2rem)] py-5 my-5" ref={divRef}></div>
+  );
 }

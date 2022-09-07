@@ -6,6 +6,7 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Search from "@arcgis/core/widgets/Search";
+import Editor from "@arcgis/core/widgets/Editor";
 
 export const PersilMap = () => {
   esriConfig.apiKey =
@@ -13,43 +14,19 @@ export const PersilMap = () => {
 
   const mapRef = useRef(null);
   useEffect(() => {
-    const popUpTemplate = {
-      title: "Blok: {KODE_BLOK}",
-      content: [
-        {
-          type: "fields",
-          fieldInfos: [
-            {
-              fieldName: "ZONA",
-              label: "Zona",
-            },
-            {
-              fieldName: "SUB_ZONA",
-              label: "Sub Zona",
-            },
-            {
-              fieldName: "PSL",
-              label: "PSL",
-            },
-            {
-              fieldName: "KDB",
-              label: "KDB",
-            },
-          ],
-        },
-      ],
-    };
-
     const persilFeature = new FeatureLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
       // url: "https://tataruang.jakarta.go.id/server/rest/services/peta_operasional/Informasi_Rencana_Kota_DKI_Jakarta_View/FeatureServer/3",
-      popupTemplate: popUpTemplate,
       outFields: ["*"],
     });
 
+    const locationFeature = new FeatureLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/0"
+    })
+
     const map = new Map({
       basemap: "arcgis-topographic", // Basemap layer service
-      layers: [persilFeature],
+      layers: [persilFeature, locationFeature],
     });
     const view = new MapView({
       map: map,
@@ -63,21 +40,32 @@ export const PersilMap = () => {
       placeholder: "Cari Lokasi Persil Tanah..."
     });
 
+    const editor = new Editor({
+      view: view,
+      allowedWorkflows: "create",
+      snappingOptions: {
+        enabled: false,
+        featureSources: [{layer: locationFeature}],
+        featureEnabled: false,
+        selfEnabled: false
+      },
+      layerInfos: [{
+        layer: locationFeature, // pass in the feature layer,
+        enabled: true, // default is true, set to false to disable editing functionality
+        addEnabled: true, // default is true, set to false to disable the ability to add a new feature
+        updateEnabled: true, // default is true, set to false to disable the ability to edit an existing feature
+        deleteEnabled: true // default is true, set to false to disable the ability to delete features
+      },{
+        layer: persilFeature, // pass in the feature layer,
+        enabled: false,
+      }]
+    });
     view.ui.add(search, "top-right")
+    view.ui.add(editor, "bottom-right");
 
     view.on("click", function (event) {
       view.hitTest(event).then(function (response) {
         const attributes = response.results[0].graphic.attributes;
-        const persilInfo = {
-          zona: attributes.ZONA,
-          subZona: attributes.SUB_ZONA,
-          KDB: attributes.KDB,
-          KLB: attributes.KLB,
-          KDH: attributes.KDH,
-          KTB: attributes.KTB,
-          PSL: attributes.PSL,
-          Tipe: attributes.TIPE,
-        };
         console.log(attributes);
       });
     });
@@ -86,5 +74,5 @@ export const PersilMap = () => {
       view && view.destroy();
     };
   }, []);
-  return <div ref={mapRef} className="MapView" />;
+  return <div ref={mapRef} className="w-full h-[calc(100vh-2rem)] py-5 my-5" />;
 };
