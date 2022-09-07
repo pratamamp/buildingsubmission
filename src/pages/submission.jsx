@@ -29,6 +29,8 @@ function SubmissionPage() {
                 className="p-2 my-2 block w-full border bg-white rounded-md focus:border-gray-600 text-gray-500 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 name="name"
                 autoComplete="name"
+                minLength="4"
+                required
               />
             </label>
           </div>
@@ -40,17 +42,20 @@ function SubmissionPage() {
                 className="p-2 my-2 block w-full border bg-white rounded-md focus:border-gray-600 text-gray-500 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 name="nik"
                 autoComplete="nik"
+                minLength="4"
+                required
               />
             </label>
           </div>
           <div className="w-full">
             <label htmlFor="nik">
               Alamat Pemohon
-              <input
-                type="text"
+              <textarea
                 className="p-2 my-2 block w-full border bg-white rounded-md focus:border-gray-600 text-gray-500 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 name="address"
                 autoComplete="address"
+                minLength="4"
+                required
               />
             </label>
           </div>
