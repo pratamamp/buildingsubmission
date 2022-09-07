@@ -58,7 +58,7 @@ function SearchPersil() {
         </div>
       </div>
       <PersilMap
-        className="w-3/4 h-[calc(100vh_-_9.5rem)] p-4 flex flex-col"
+        className="w-3/4 h-[calc(100vh_-_9.5rem)] flex flex-col"
         {...{ setDataPersil }}
       />
     </div>
