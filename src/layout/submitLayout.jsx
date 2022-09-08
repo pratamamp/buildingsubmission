@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Outlet, Link, useParams } from "react-router-dom";
 import logo from "/logodki.svg";
-import bgImage from "/bg-transparent.png";
+import bgImage from "/bg-sketch.png";
 import { BsCheckLg } from "react-icons/bs";
 
 function SubmitLayout() {
@@ -58,7 +58,7 @@ function SubmitLayout() {
       </div>
 
       <div className="-z-40 absolute left-0 right-0 w-full bg-gray-100 h-[calc(100vh_-_9.5rem)] overflow-clip">
-        <img src={bgImage} alt="background" className="bg-cover bg-center" />
+        <img src={bgImage} alt="background" className=" bg-cover bg-center" />
       </div>
 
       {/* Content */}

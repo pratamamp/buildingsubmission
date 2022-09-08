@@ -13,26 +13,26 @@ function UploadFiles() {
       <div className="w-9/12 h-5/6 bg-white rounded-lg shadow-lg shadow-gray-300 font-poppins flex flex-col">
         <div className="flex flex-grow">
           <div className="w-2/5 px-10 py-5">
-            <h2 className="font-semibold text-lg">Upload GPA 3D</h2>
-            <p className="text-xs text-[#5C5C5C] my-3">
+            <h2 className="font-semibold text-xl">Upload GPA 3D</h2>
+            <p className=" text-[#5C5C5C] my-3">
               Sebelum mengupload file . harap perhatikanlah ketentuan file
               dibawah ini
             </p>
-            <div className="flex flex-col divide-y text-xs mt-10 space-y-2">
+            <div className="flex flex-col divide-y mt-10 space-y-2">
               <div className="flex items-center h-10 space-x-3 ">
-                <FaGlobe className="w-4 h-4 text-[#12519E]" />
+                <FaGlobe className="w-6 h-6 text-[#12519E]" />
                 <h2 className="text-[#717171]">
                   Sudah dilakukan geo-referensi
                 </h2>
               </div>
               <div className="items-center flex h-10 space-x-3">
-                <BiTargetLock className="w-4 h-4 text-[#12519E]" />
+                <BiTargetLock className="w-6 h-6 text-[#12519E]" />
                 <h2 className="text-[#717171]">
                   Menggunakan sistem koordinat wgs 1984
                 </h2>
               </div>
               <div className="flex items-center h-10 space-x-3">
-                <BsFileEarmarkText className="w-4 h-4 text-[#12519E]" />
+                <BsFileEarmarkText className="w-6 h-6 text-[#12519E]" />
                 <h2 className="text-[#717171]">
                   Unggah model 3d GPA berbasis BIM dalam format .SKP atau .RVT
                 </h2>
