@@ -19,7 +19,7 @@ function Home() {
           <div className="h-8 w-8">
             <img src={logo} alt="logo dki" className=" object-contain" />
           </div>
-          <ul className="flex space-x-4 items-center font-poppins text-sm text-white">
+          <ul className="flex space-x-4 items-center font-poppins text-white">
             <li className=" border-b-2 pb-2">
               <Link to="/">Beranda</Link>
             </li>
@@ -34,9 +34,9 @@ function Home() {
             </li>
           </ul>
         </div>
-        <button className="rounded-full border-2 border-white/70 bg-[#12519E] text-center flex items-center text-sm justify-center px-4 py-2 text-white">
+        {/* <button className="rounded-full border-2 border-white/70 bg-[#12519E] text-center flex items-center justify-center px-4 py-2 text-white">
           Masuk
-        </button>
+        </button> */}
       </div>
       <div className="flex justify-center items-center h-[calc(100vh_-_7rem)]">
         <h2 className=" font-bold font-poppins text-7xl w-2/3 text-center text-white">

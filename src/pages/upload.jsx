@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { FaGlobe, FaPencilAlt, FaCloudUploadAlt } from "react-icons/fa";
 import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 function UploadFiles() {
-  const [loading, setLoading] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [loadingFinished, setFinishedLoading] = useState(false);
 
   return (
     <div className="w-full h-[calc(100vh_-_9.5rem)] flex justify-center items-center">
@@ -41,23 +43,41 @@ function UploadFiles() {
               </div>
             </div>
           </div>
+
+          {/* dropbox */}
+
           <div className="flex-auto flex pt-5">
             <div className="rounded-md bg-white/40 w-11/12 border border-sky-400 flex flex-col justify-center items-center">
-              <FaCloudUploadAlt className="w-20 h-20 text-sky-500" />
-              <div className="font-poppins text-xs my-5">
-                <p className="text-[#37474F]">
-                  <span className="font-bold">
-                    Taruh file .SKP atau .RVT disini
-                  </span>{" "}
-                  atau klik untuk menggunggah
-                </p>
-                <p className="text-[#717171]">Maximum file size 100 MB</p>
-              </div>
-              <button className="rounded-lg border-[#BDBDBD] border p-2 font-poppins text-xs text-[#12519E] font-semibold">
-                Upload +
-              </button>
+              {showLoading ? (
+                <div>
+                  <Player
+                    src={"./loading.json"}
+                    loop
+                    autoplay
+                    className=" w-9 h-9"
+                  />
+                </div>
+              ) : (
+                <>
+                  <FaCloudUploadAlt className="w-20 h-20 text-sky-500" />
+                  <div className="font-poppins text-xs my-5">
+                    <p className="text-[#37474F]">
+                      <span className="font-bold">
+                        Taruh file .SKP atau .RVT disini
+                      </span>
+                      atau klik untuk menggunggah
+                    </p>
+                    <p className="text-[#717171]">Maximum file size 100 MB</p>
+                  </div>
+                  <button className="rounded-lg border-[#BDBDBD] border p-2 font-poppins text-xs text-[#12519E] font-semibold">
+                    Upload +
+                  </button>
+                </>
+              )}
             </div>
           </div>
+
+          {/* end dropbox */}
         </div>
 
         <div className="w-full flex items-center mt-auto w-full p-5 justify-end space-x-4 px-12 font-poppins font-semibold text-xs">
