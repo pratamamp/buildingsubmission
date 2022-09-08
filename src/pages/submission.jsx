@@ -62,7 +62,7 @@ function SubmissionPage() {
             </div>
             <div className="mt-auto w-full">
               <button
-                className="bg-blue-700 rounded-md text-white w-full py-3 hover:bg-blue-600"
+                className="bg-[#12519E] rounded-md text-white w-full py-3 hover:bg-blue-600"
                 type="submit"
               >
                 Selanjutnya
