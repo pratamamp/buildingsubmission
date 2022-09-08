@@ -2,11 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 @layer components {
   .stepper-active div {
     @apply h-8 w-8 rounded-full bg-[#12519E] flex items-center justify-center text-gray-200;
   }
   .stepper div {
     @apply flex items-center justify-center text-[#12519E] h-8 w-8 rounded-full bg-[#12519E]/10;
+  }
+  .navbar-active .hamburger div:first-child {
+    @apply rotate-45 translate-y-1.5;
   }
 }
