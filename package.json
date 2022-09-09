@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.4.7",
     "@arcgis/core": "^4.24.7",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",

@@ -13,86 +13,160 @@ function SearchPersil() {
   return (
     <div className="flex">
       <div className="w-1/4 bg-gray-100 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242]">
-        <div>
-          <h2 className="font-poppins font-semibold text-black">
+        <div className="mt-10">
+          <h2 className="font-poppins text-2xl font-semibold text-black">
             Pilih Persil
           </h2>
-          <p className=" font-poppins text-xs my-2 text-[#5C5C5C]">
+          <p className="font-poppins my-2 text-[1rem] text-[#5C5C5C]">
             Pilih Atau Cari Persil Tanah Untuk Pengajuan Melalui Peta Yang
             Tersedia
           </p>
         </div>
         {!dataPersil ? (
           <div className="w-full flex flex-grow items-center justify-center px-5 border-b-2">
-            <h2 className="font-poppins text-xs text-[#12519E] text-center">
+            <h2 className="font-poppins text-[#12519E] text-center">
               Anda Belum Memilih Lokasi Untuk Pengajuan IMB
             </h2>
           </div>
         ) : (
-          <>
-            <div className="border-b border-gray-200 font-poppins py-3 space-y-2 overflow-y-auto no-scrollbar">
-              <div className="text-xs">
-                <h2 className="font-semibold text-sm text-[#12519E]">Lokasi</h2>
-                <ul className="space-y-1">
-                  <li>
-                    Kota:{" "}
-                    {String(dataPersil.nama_kota)
-                      ?.toLowerCase()
-                      .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
-                  </li>
-                  <li>
-                    Kecamatan:{" "}
-                    {dataPersil.kecamatan
-                      ?.toLowerCase()
-                      .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
-                  </li>
-                  <li>
-                    Kelurahan:{" "}
-                    {dataPersil.kelurahan
-                      ?.toLowerCase()
-                      .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
-                  </li>
-                  <li>RT/RW: -</li>
-                </ul>
+          <div className="flex flex-col h-[calc(100vh_-_9.5rem)]">
+            <div className="border-b border-gray-200 font-poppins space-y-2 overflow-y-auto no-scrollbar flex-grow">
+              <div>
+                <h2 className="font-semibold text-[#12519E] text-lg">Lokasi</h2>
+                <table className="table-fixed w-full text-left text-[#424242] text-poppins">
+                  <tbody>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Kota
+                      </td>
+                      <td className=" px-6">
+                        {String(dataPersil.nama_kota)
+                          ?.toLowerCase()
+                          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
+                      </td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Kecamatan
+                      </td>
+                      <td className=" px-6">
+                        {dataPersil.kecamatan
+                          ?.toLowerCase()
+                          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
+                      </td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Kelurahan
+                      </td>
+                      <td className=" px-6">
+                        {dataPersil.kelurahan
+                          ?.toLowerCase()
+                          .replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
+                      </td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        RT/RW
+                      </td>
+                      <td className=" px-6">-</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div className="text-xs">
-                <h2 className="font-semibold text-sm text-[#12519E]">
+              <div className="">
+                <h2 className="font-semibold text-lg text-[#12519E]">
                   Informasi Sub Zona
                 </h2>
-                <ul className="space-y-1">
-                  <li>Zona: {dataPersil.zona}</li>
-                  <li>Sub-Zona: {dataPersil.sub_zona}</li>
-                  <li>Luas Bidang: -</li>
-                  <li>KDB: {dataPersil.kdb}</li>
-                  <li>KLB: {dataPersil.klb}</li>
-                  <li>KDH: {dataPersil.kdh}</li>
-                  <li>KTB: {dataPersil.ktb}</li>
-                  <li>Ketinggian: {dataPersil.tinggi_m_dummy}</li>
-                  <li>PSL: {dataPersil.psl}</li>
-                  <li>Tipe: {dataPersil.tipe}</li>
-                </ul>
+                <table className="table-fixed w-full text-left text-[#424242] text-poppins">
+                  <tbody>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Zona
+                      </td>
+                      <td className="px-6">{dataPersil.zona}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Sub Zona
+                      </td>
+                      <td className=" px-6">
+                      {dataPersil.sub_zona}
+                      </td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        -
+                      </td>
+                      <td className="px-6"> - </td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        KDB
+                      </td>
+                      <td className=" px-6">{dataPersil.kdb}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        KLB
+                      </td>
+                      <td className=" px-6">{dataPersil.klb}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        KDH
+                      </td>
+                      <td className=" px-6">{dataPersil.kdh}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        KTB
+                      </td>
+                      <td className=" px-6">{dataPersil.ktb}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Ketinggian
+                      </td>
+                      <td className=" px-6">{dataPersil.tinggi_m_dummy}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        PSL
+                      </td>
+                      <td className=" px-6">{dataPersil.psl}</td>
+                    </tr>
+                    <tr className="">
+                      <td scope="row" className="">
+                        Tipe
+                      </td>
+                      <td className=" px-6">{dataPersil.tipe}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div className="text-xs space-y-1">
-                <h2 className="font-semibold text-sm text-[#12519E]">
+              <div className="space-y-1">
+                <h2 className="font-semibold text-lg text-[#12519E]">
                   Informasi Lainnya
                 </h2>
-                <p>Metode Penggambaran</p>
+                <p className="">Metode Penggambaran</p>
               </div>
             </div>
-            <div className="flex justify-evenly items-center font-poppins text-xs w-full my-auto">
-              <button className="border rounded-lg px-3 py-2 w-28 my-2 text-gray-700">
+
+            <div className="flex justify-evenly items-center font-poppins w-full h-16 mt-auto">
+              <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-4/5 w-1/3">
                 Batal
               </button>
               <button
-                className="w-28 px-3 py-2 rounded-lg bg-[#12519E] text-white my-2"
+                className="border rounded-lg bg-[#12519E] text-white h-4/5 w-1/3"
                 onClick={handleSubmit}
               >
                 Selanjutnya
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
       <PersilMap
