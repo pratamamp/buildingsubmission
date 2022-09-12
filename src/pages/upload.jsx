@@ -4,9 +4,10 @@ import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
+import loading from "../assets/loading.json"
 
 function UploadFiles() {
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState();
@@ -20,14 +21,15 @@ function UploadFiles() {
     if (!fileObj) {
       return;
     }
+    // console.log(fileObj)
 
     const formData = new FormData();
 
-    formData.append("selectedFile", selectedFile);
+    formData.append("file", fileObj);
     try {
       const response = await axios({
         method: "post",
-        url: "/api/upload/file",
+        url: "http://127.0.0.1:8000/upload",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -81,7 +83,7 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={"./loading.json"}
+                    src={loading}
                     loop
                     autoplay
                     className=" w-9 h-9"
@@ -112,6 +114,7 @@ function UploadFiles() {
                     ref={inputRef}
                     onChange={handleFileChange}
                     className="hidden"
+                    accept=".skp,.rvt"
                   />
                 </>
               )}
@@ -121,7 +124,7 @@ function UploadFiles() {
           {/* end dropbox */}
         </div>
 
-        <div className="w-full flex items-center mt-auto w-full justify-end space-x-4 font-poppins font-semibold text-xs px-16 py-4">
+        <div className="flex items-center mt-auto w-full justify-end space-x-4 font-poppins font-semibold text-xs px-16 py-4">
           <button className="border border-[#BDBDBD] rounded-lg py-2 w-28 text-[#757575]">
             Batal
           </button>
