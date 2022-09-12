@@ -11,7 +11,7 @@ function SearchPersil() {
   };
   return (
     <div className="flex">
-      <div className="w-1/4 bg-gray-100 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242]">
+      <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
         <div className="mt-10">
           <h2 className="font-poppins text-2xl font-semibold text-black">
             Pilih Persil
