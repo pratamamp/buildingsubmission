@@ -12,8 +12,8 @@ export function BuildingScene({className}) {
     "AAPK4b3895d07794469dbd57a083f1ac4fa52nP3iH2KjKBQ2wRSVFdz17o7vuCF-lo_yMcmcIDhijUKcuRGC_oNSu5JKRBZDjYn";
   const divRef = useRef();
   const buildingLayer = new BuildingSceneLayer({
-    url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
-    // url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Rusun_GemawangBlokAGROUND/SceneServer",
+    // url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
+    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Rusun_GemawangBlokAGROUND/SceneServer",
     // title: "Building Scene Layer - Test",
   });
   const persilFeature = new FeatureLayer({
