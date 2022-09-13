@@ -7,15 +7,26 @@ import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-export function BuildingScene({className}) {
+export function BuildingScene({ className }) {
   esriConfig.apiKey =
     "AAPK4b3895d07794469dbd57a083f1ac4fa52nP3iH2KjKBQ2wRSVFdz17o7vuCF-lo_yMcmcIDhijUKcuRGC_oNSu5JKRBZDjYn";
   const divRef = useRef();
-  const buildingLayer = new BuildingSceneLayer({
-    // url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
-    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
-    // title: "Building Scene Layer - Test",
-  });
+  const persilId = localStorage.getItem("persilId");
+  let buildingLayer;
+  if (persilId === "30") {
+    buildingLayer = new BuildingSceneLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
+    });
+  } else if (persilId === "17") {
+    buildingLayer = new BuildingSceneLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model2/SceneServer",
+    });
+  }
+  // const buildingLayer =  new BuildingSceneLayer({
+  //   // url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
+  //   url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
+  //   // title: "Building Scene Layer - Test",
+  // });
   const persilFeature = new FeatureLayer({
     url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
   });
@@ -67,7 +78,5 @@ export function BuildingScene({className}) {
       });
     });
   }, []);
-  return (
-    <div className={className} ref={divRef}></div>
-  );
+  return <div className={className} ref={divRef}></div>;
 }

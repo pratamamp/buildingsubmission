@@ -5,10 +5,14 @@ import { PersilMap } from "../components/Persil/Persil";
 function SearchPersil() {
   const [dataPersil, setDataPersil] = useState(null);
   const navigate = useNavigate();
+  // console.log(dataPersil)
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/submission/3");
+    localStorage.setItem("persilId", dataPersil.objectid);
+    if (dataPersil.objectid === 17 || dataPersil.objectid === 30) {
+      navigate("/submission/3");
+    }
   };
   return (
     <div className="flex">
@@ -91,9 +95,7 @@ function SearchPersil() {
                       <td scope="row" className="">
                         Sub Zona
                       </td>
-                      <td className=" px-6">
-                      {dataPersil.sub_zona}
-                      </td>
+                      <td className=" px-6">{dataPersil.sub_zona}</td>
                     </tr>
                     <tr className="">
                       <td scope="row" className="">
