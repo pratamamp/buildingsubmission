@@ -13,14 +13,14 @@ export function BuildingScene({className}) {
   const divRef = useRef();
   const buildingLayer = new BuildingSceneLayer({
     // url: "https://tiles.arcgis.com/tiles/mpSDBlkEzjS62WgX/arcgis/rest/services/Gemawang_buildingscenelayer/SceneServer",
-    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Rusun_GemawangBlokAGROUND/SceneServer",
+    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
     // title: "Building Scene Layer - Test",
   });
   const persilFeature = new FeatureLayer({
     url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
   });
   const webscene = new WebScene({
-    // basemap: "arcgis-topographic"
+    // basemap: "arcgis-topographic",
     portalItem: {
       id: "c7470b0e4e4c44288cf287d658155300",
     },

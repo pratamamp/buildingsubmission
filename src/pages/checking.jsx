@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "../components/Accordion/Accordion";
 import { BuildingScene } from "../components/BuildingScene/Building";
 
@@ -24,7 +24,7 @@ function CheckingGPA() {
         </div>
       </div>
       <div className="flex-auto bg-white/90">
-        <BuildingScene className="w-3/4 h-[calc(100vh_-_9.5rem)] flex flex-col" />
+        <BuildingScene className="w-full h-[calc(100vh_-_9.5rem)] flex flex-col" />
       </div>
     </div>
   );
