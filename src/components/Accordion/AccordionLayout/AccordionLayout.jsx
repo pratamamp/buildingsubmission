@@ -1,6 +1,10 @@
 import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import {
+  IoIosArrowForward,
+  IoIosArrowDown,
+  IoIosCloseCircle,
+} from "react-icons/io";
 
 function AccordionLayout({
   title,
@@ -8,6 +12,7 @@ function AccordionLayout({
   index,
   activeIndex,
   setActiveIndex,
+  checked,
 }) {
   const handleSetIndex = (index) =>
     activeIndex !== index && setActiveIndex(index);
@@ -18,8 +23,12 @@ function AccordionLayout({
         onClick={() => handleSetIndex(index)}
         className="flex justify-between mt-2 w-11/12 cursor-pointer"
       >
-        <div className="w-1/6 text-green-500 flex items-center justify-center">
-          <BsFillCheckCircleFill className="w-5 h-5" />
+        <div className="w-1/6 flex items-center justify-center">
+          {checked ? (
+            <BsFillCheckCircleFill className="w-5 h-5 text-green-500" />
+          ) : (
+            <IoIosCloseCircle className="w-6 h-6 text-red-600" />
+          )}
         </div>
         <h2 className="w-4/6 items-center flex font-poppins">{title}</h2>
         <div className="w-1/6 flex items-center justify-end">
