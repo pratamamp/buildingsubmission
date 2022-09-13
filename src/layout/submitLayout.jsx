@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { Outlet, Link, useParams } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import logo from "/logodki.svg";
 import bgImage from "/bg-sketch.png";
 import { BsCheckLg } from "react-icons/bs";
 
 function SubmitLayout() {
-  const params = useParams();
+  const location = useLocation();
+
   useEffect(() => {
-    console.log(params.id);
-  }, [params]);
+    console.log(location.pathname);
+  }, [location]);
+
   return (
     <div className="">
       {/* topbar */}
@@ -36,22 +38,68 @@ function SubmitLayout() {
 
       <div className="border-b-2 h-24 w-full">
         <ol className="flex items-center space-x-5 justify-center h-full font-poppins text-sm">
-          <li className="flex items-center space-x-2 stepper-active">
+          <li
+            className={`flex items-center space-x-2 ${
+              location.pathname === "/submission/"
+                ? "stepper-active"
+                : "stepper"
+            }`}
+          >
             <div>
-              <BsCheckLg className="w-3 h-3 text-gray-200" />
+              {location.pathname === "/submission/" ? (
+                <BsCheckLg className="w-3 h-3 text-gray-200" />
+              ) : (
+                1
+              )}
             </div>
             <p className="text-gray-500">Form Pengajuan Izin</p>
           </li>
-          <li className="flex items-center space-x-2 stepper">
-            <div>2</div>
+          <li
+            className={`flex items-center space-x-2 ${
+              location.pathname === "/submission/2"
+                ? "stepper-active"
+                : "stepper"
+            }`}
+          >
+            <div>
+              {location.pathname === "/submission/2" ? (
+                <BsCheckLg className="w-3 h-3 text-gray-200" />
+              ) : (
+                2
+              )}
+            </div>
             <p className="text-gray-500">Pilih Persil</p>
           </li>
-          <li className="flex items-center space-x-2 stepper">
-            <div>3</div>
+          <li
+            className={`flex items-center space-x-2 ${
+              location.pathname === "/submission/3"
+                ? "stepper-active"
+                : "stepper"
+            }`}
+          >
+            <div>
+              {location.pathname === "/submission/3" ? (
+                <BsCheckLg className="w-3 h-3 text-gray-200" />
+              ) : (
+                3
+              )}
+            </div>
             <p className="text-gray-500">Upload GPA 3D</p>
           </li>
-          <li className="flex items-center space-x-2 stepper">
-            <div>4</div>
+          <li
+            className={`flex items-center space-x-2 ${
+              location.pathname === "/submission/4"
+                ? "stepper-active"
+                : "stepper"
+            }`}
+          >
+            <div>
+              {location.pathname === "/submission/4" ? (
+                <BsCheckLg className="w-3 h-3 text-gray-200" />
+              ) : (
+                4
+              )}
+            </div>
             <p className="text-gray-500">Pemeriksaan GPA</p>
           </li>
         </ol>

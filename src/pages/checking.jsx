@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Accordion from "../components/Accordion/Accordion";
 import { BuildingScene } from "../components/BuildingScene/Building";
 
 function CheckingGPA() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex">
       <div className="flex flex-col w-1/4 h-[calc(100vh_-_9.5rem)] bg-gray-50 border-r border-[#D2D2D2]">
@@ -18,8 +21,11 @@ function CheckingGPA() {
           <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-4/5 w-1/3">
             Batal
           </button>
-          <button className="border rounded-lg bg-[#12519E] text-white h-4/5 w-1/3">
-            Selanjutnya
+          <button
+            className="border rounded-lg bg-[#12519E] text-white h-4/5 w-1/3"
+            onClick={() => navigate("/")}
+          >
+            Back To Home
           </button>
         </div>
       </div>
