@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import SubmitLayout from "./layout/submitLayout";
+import CheckingGPA from "./pages/checking";
 import Home from "./pages/home";
 import SearchPersil from "./pages/searchpersil";
 import SubmissionPage from "./pages/submission";
@@ -13,6 +14,7 @@ function App() {
         <Route index element={<SubmissionPage />} />
         <Route path="/submission/2" element={<SearchPersil />} />
         <Route path="/submission/3" element={<UploadFiles />} />
+        <Route path="/submission/4" element={<CheckingGPA />} />
       </Route>
     </Routes>
   );

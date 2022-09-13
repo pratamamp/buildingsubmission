@@ -81,7 +81,7 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={"./loading.json"}
+                    src={"/loading.json"}
                     loop
                     autoplay
                     className=" w-9 h-9"
