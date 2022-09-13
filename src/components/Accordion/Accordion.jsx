@@ -3,10 +3,12 @@ import AccordionLayout from "./AccordionLayout/AccordionLayout";
 
 const ketentuan = [
   {
+    checked: true,
     title: "Ketentuan Pembangunan",
     detail: "KDB GPA 50",
   },
   {
+    checked: false,
     title: "Koefisien Dasar Bangunan (KDB)",
     detail: "koefisien dd <br/> line 2",
   },
@@ -15,7 +17,7 @@ const ketentuan = [
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState(1);
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col overflow-hidden h-4/6">
       {/* <AccordionLayout
         title="Ketentuan Pembangunan"
         index={1}
@@ -42,6 +44,7 @@ const Accordion = () => {
           key={key}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
+          checked={item.checked}
         >
           {item.detail}
         </AccordionLayout>
