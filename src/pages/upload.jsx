@@ -4,11 +4,18 @@ import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UploadFiles() {
   const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+
+  function handleNavigation(e) {
+    e.preventDefault();
+    navigate("/submission/4");
+  }
 
   function handleUpload(event) {
     inputRef.current.click();
@@ -133,6 +140,7 @@ function UploadFiles() {
                 ? "bg-[#12519E] text-[#d6e9e2]"
                 : "bg-[#EEEEEE] text-[#757575]"
             }`}
+            onClick={handleNavigation}
           >
             Selanjutnya
           </button>
