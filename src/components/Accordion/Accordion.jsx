@@ -38,7 +38,6 @@ const Accordion = () => {
     }
     fetchGpa();
   }, []);
-  console.log(gpa)
   return (
     <div className="flex flex-col overflow-hidden h-4/6">
       {/* <AccordionLayout

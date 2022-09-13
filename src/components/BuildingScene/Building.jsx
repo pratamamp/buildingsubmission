@@ -1,4 +1,3 @@
-import "@arcgis/core/assets/esri/themes/light/main.css";
 import React, { useRef, useEffect } from "react";
 import esriConfig from "@arcgis/core/config";
 import WebScene from "@arcgis/core/WebScene";
@@ -6,6 +5,7 @@ import SceneView from "@arcgis/core/views/SceneView";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Slice from "@arcgis/core/widgets/Slice";
 
 export function BuildingScene({ className }) {
   esriConfig.apiKey =
@@ -53,8 +53,15 @@ export function BuildingScene({ className }) {
       const layerList = new LayerList({
         view: currentView,
       });
+      const sliceWidget = new Slice({
+        view: currentView,
+        // viewModel: {
+        //   tiltEnabled: true,
+        // },
+      });
       currentView.ui.empty("top-left");
       currentView.ui.add(layerList, "top-left");
+      currentView.ui.add(sliceWidget, "top-right");
 
       buildingLayer.when(() => {
         buildingLayer.allSublayers.forEach((layer) => {
