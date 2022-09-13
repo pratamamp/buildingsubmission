@@ -46,6 +46,7 @@ export function BuildingScene({ className }) {
         tilt: 55,
         heading: 25,
       },
+      environment: { lighting: "virtual" },
       container: divRef.current,
     }).when((currentView) => {
       webscene.layers.add(buildingLayer);
