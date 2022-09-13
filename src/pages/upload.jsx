@@ -4,7 +4,6 @@ import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
-import loading from "../assets/loading.json"
 
 function UploadFiles() {
   const [showLoading, setShowLoading] = useState(false);
@@ -83,7 +82,7 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={loading}
+                    src={"../assets/loading"}
                     loop
                     autoplay
                     className=" w-9 h-9"
