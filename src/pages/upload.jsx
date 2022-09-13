@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaGlobe, FaPencilAlt, FaCloudUploadAlt } from "react-icons/fa";
 import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
@@ -6,37 +6,39 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
 
 function UploadFiles() {
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState();
 
   function handleUpload(event) {
     inputRef.current.click();
   }
 
   async function handleFileChange(event) {
-    const fileObj = event.target.files && event.target.files[0];
-    if (!fileObj) {
-      return;
-    }
+    // const fileObj = event.target.files && event.target.files[0];
+    // if (!fileObj) {
+    //   return;
+    // }
 
-    const formData = new FormData();
+    // const formData = new FormData();
 
-    formData.append("selectedFile", selectedFile);
-    try {
-      const response = await axios({
-        method: "post",
-        url: "/api/upload/file",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    // formData.append("selectedFile", fileObj);
+    // try {
+    //   const response = await axios({
+    //     method: "post",
+    //     url: "/api/upload/file",
+    //     data: formData,
+    //     headers: { "Content-Type": "multipart/form-data" },
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
     // reset file input
+    setFinishedLoading(true);
     event.target.value = null;
   }
+
+  useEffect(() => {}, [loadingFinished]);
 
   return (
     <div className="w-full h-[calc(100vh_-_9.5rem)] flex justify-center items-center">
@@ -126,8 +128,10 @@ function UploadFiles() {
             Batal
           </button>
           <button
-            className={`rounded-lg py-2 w-28 text-[#757575] border border-[#EEEEEE] bg-[#EEEEEE] ${
-              selectedFile ? "bg-blue-300" : ""
+            className={`rounded-lg py-2 w-28 border border-[#EEEEEE] ${
+              loadingFinished
+                ? "bg-[#12519E] text-[#d6e9e2]"
+                : "bg-[#EEEEEE] text-[#757575]"
             }`}
           >
             Selanjutnya
