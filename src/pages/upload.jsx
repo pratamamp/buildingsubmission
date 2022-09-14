@@ -14,7 +14,7 @@ function UploadFiles() {
 
   function handleNavigation(e) {
     e.preventDefault();
-    navigate("/submission/4");
+    loadingFinished ? navigate("/submission/4") : "";
   }
 
   function handleUpload(event) {
@@ -41,7 +41,12 @@ function UploadFiles() {
     //   console.error(error);
     // }
     // reset file input
-    setFinishedLoading(true);
+    setShowLoading(true);
+    // setFinishedLoading(true);
+    const interval = setInterval(() => {
+      setFinishedLoading(true);
+      clearInterval(interval);
+    }, 5000);
     event.target.value = null;
   }
 
@@ -90,10 +95,10 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={"/loading.json"}
+                    src={"/loading-animation-blue.json"}
                     loop
                     autoplay
-                    className=" w-9 h-9"
+                    className=" w-52 h-52"
                   />
                 </div>
               ) : (
