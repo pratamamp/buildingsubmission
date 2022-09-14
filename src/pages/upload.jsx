@@ -11,10 +11,11 @@ function UploadFiles() {
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const timeoutDelay = 90 * 1000;
 
   function handleNavigation(e) {
     e.preventDefault();
-    navigate("/submission/4");
+    loadingFinished ? navigate("/submission/4") : "";
   }
 
   function handleUpload(event) {
@@ -41,7 +42,12 @@ function UploadFiles() {
     //   console.error(error);
     // }
     // reset file input
-    setFinishedLoading(true);
+    setShowLoading(true);
+    // setFinishedLoading(true);
+    const interval = setTimeout(() => {
+      setFinishedLoading(true);
+      clearTimeout(interval);
+    }, timeoutDelay);
     event.target.value = null;
   }
 
@@ -90,11 +96,16 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={"../assets/loading"}
+                    src={"/loading-animation-blue.json"}
                     loop
                     autoplay
-                    className=" w-9 h-9"
+                    className=" w-52 h-52"
                   />
+                  <h2 className="text-center font-poppins">
+                    Pengecekan GPA sedang dilakukan.
+                    <br />
+                    Mohon tunggu sebentar...
+                  </h2>
                 </div>
               ) : (
                 <>
