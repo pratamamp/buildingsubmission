@@ -40,9 +40,7 @@ function SubmitLayout() {
         <ol className="flex items-center space-x-5 justify-center h-full font-poppins text-sm">
           <li
             className={`flex items-center space-x-2 ${
-              location.pathname === "/submission/"
-                ? "stepper-active"
-                : "stepper"
+              location.pathname === "/submission" ? "stepper-active" : "stepper"
             }`}
           >
             <div>
