@@ -7,6 +7,7 @@ import SceneLayer from "@arcgis/core/layers/SceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Slice from "@arcgis/core/widgets/Slice";
+import BuildingExplorer from "@arcgis/core/widgets/BuildingExplorer";
 
 export function BuildingScene({ className }) {
   esriConfig.apiKey =
@@ -83,6 +84,15 @@ export function BuildingScene({ className }) {
       permenFeature.when(() => {
         permenFeature.popupTemplate = permenFeature.createPopupTemplate();
       });
+
+      if (persilId === "30" || persilId === "17") {
+        const buildingExplorer = new BuildingExplorer({
+          view: currentView,
+          layers: [buildingLayer],
+        });
+        currentView.ui.add(buildingExplorer, "top-right");
+      }
+
       buildingLayer.when(() => {
         if (persilId === "44" || persilId === "184") {
           currentView.goTo(buildingLayer.fullExtent);
