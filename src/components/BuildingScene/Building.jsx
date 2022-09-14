@@ -36,19 +36,24 @@ export function BuildingScene({ className }) {
   //   url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
   //   // title: "Building Scene Layer - Test",
   // });
+  const envelopeFeature = new SceneLayer({
+    url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Zoning_Envelope_2/SceneServer",
+    popupEnabled: false,
+    opacity: 0.3,
+  });
   const persilFeature = new FeatureLayer({
     url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
   });
   const permenFeature = new FeatureLayer({
     url: "https://jakartasatu.jakarta.go.id/server/rest/services/Peta_OPS_Permen14_2020/Peta_OPS_Permen_14_2020/MapServer/0",
-    popupEnabled: true
-  })
+    popupEnabled: true,
+  });
   const webscene = new WebScene({
     // basemap: "arcgis-topographic",
     portalItem: {
       id: "c7470b0e4e4c44288cf287d658155300",
     },
-    layers: [persilFeature, permenFeature],
+    layers: [persilFeature, permenFeature, envelopeFeature],
   });
   const excludedLayer = [];
   useEffect(() => {
@@ -76,11 +81,11 @@ export function BuildingScene({ className }) {
       currentView.ui.add(layerList, "top-left");
       currentView.ui.add(sliceWidget, "top-right");
       permenFeature.when(() => {
-        permenFeature.popupTemplate = permenFeature.createPopupTemplate()
-      })
+        permenFeature.popupTemplate = permenFeature.createPopupTemplate();
+      });
       buildingLayer.when(() => {
         if (persilId === "44" || persilId === "184") {
-          currentView.goTo(buildingLayer.fullExtent)
+          currentView.goTo(buildingLayer.fullExtent);
         }
 
         buildingLayer.allSublayers.forEach((layer) => {
