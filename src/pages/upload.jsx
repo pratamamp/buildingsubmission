@@ -46,7 +46,7 @@ function UploadFiles() {
     const interval = setInterval(() => {
       setFinishedLoading(true);
       clearInterval(interval);
-    }, 5000);
+    }, 90000);
     event.target.value = null;
   }
 
