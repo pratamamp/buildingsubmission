@@ -3,6 +3,7 @@ import esriConfig from "@arcgis/core/config";
 import WebScene from "@arcgis/core/WebScene";
 import SceneView from "@arcgis/core/views/SceneView";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
+import SceneLayer from "@arcgis/core/layers/SceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Slice from "@arcgis/core/widgets/Slice";
@@ -20,6 +21,14 @@ export function BuildingScene({ className }) {
   } else if (persilId === "17") {
     buildingLayer = new BuildingSceneLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model2/SceneServer",
+    });
+  } else if (persilId === "44") {
+    buildingLayer = new SceneLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Upload_SKP_1a/SceneServer",
+    });
+  } else if (persilId === "184") {
+    buildingLayer = new SceneLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Upload_SKP_2/SceneServer",
     });
   }
   // const buildingLayer =  new BuildingSceneLayer({
@@ -64,6 +73,10 @@ export function BuildingScene({ className }) {
       currentView.ui.add(sliceWidget, "top-right");
 
       buildingLayer.when(() => {
+        if (persilId === "44" || persilId === "184") {
+          currentView.goTo(buildingLayer.fullExtent)
+        }
+
         buildingLayer.allSublayers.forEach((layer) => {
           switch (layer.modelName) {
             case "FullModel":

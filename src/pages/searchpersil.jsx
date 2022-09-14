@@ -9,8 +9,8 @@ function SearchPersil() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("persilId", dataPersil.objectid);
-    if (dataPersil.objectid === 17 || dataPersil.objectid === 30) {
+    if (dataPersil.objectid === 17 || dataPersil.objectid === 30 || dataPersil.objectid === 44 || dataPersil.objectid === 184) {
+      localStorage.setItem("persilId", dataPersil.objectid);
       navigate("/submission/3");
     }
   };
