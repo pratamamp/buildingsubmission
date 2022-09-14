@@ -5,7 +5,7 @@ import { PersilMap } from "../components/Persil/Persil";
 function SearchPersil() {
   const [dataPersil, setDataPersil] = useState(null);
   const navigate = useNavigate();
-  // console.log(dataPersil)
+  console.log(dataPersil)
   const handleSubmit = (e) => {
     e.preventDefault();
 

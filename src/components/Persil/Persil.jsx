@@ -18,14 +18,16 @@ export const PersilMap = ({ className, setDataPersil }) => {
       // url: "https://tataruang.jakarta.go.id/server/rest/services/peta_operasional/Informasi_Rencana_Kota_DKI_Jakarta_View/FeatureServer/3",
       outFields: ["*"],
     });
-
+    const permenFeature = new FeatureLayer({
+      url: "https://jakartasatu.jakarta.go.id/server/rest/services/Peta_OPS_Permen14_2020/Peta_OPS_Permen_14_2020/MapServer/0"
+    })
     const locationFeature = new FeatureLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/0",
     });
 
     const map = new Map({
       basemap: "arcgis-topographic", // Basemap layer service
-      layers: [persilFeature, locationFeature],
+      layers: [permenFeature, persilFeature, locationFeature],
     });
     const view = new MapView({
       map: map,
