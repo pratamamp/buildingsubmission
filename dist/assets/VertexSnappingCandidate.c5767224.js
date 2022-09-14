@@ -1,1 +1,0 @@
-import{oe as e,of as o}from"./index.ce207a0f.js";import{s as r}from"./PointSnappingHint.1cc55e4a.js";class a extends e{constructor(t){super({...t,constraint:new o(t.coordinateHelper,t.targetPoint)})}get hints(){return[new r(this.targetPoint,this.elevationInfo)]}}export{a as r};
