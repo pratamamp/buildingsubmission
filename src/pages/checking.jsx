@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Accordion from "../components/Accordion/Accordion";
 
 import WebScene from "@arcgis/core/WebScene";
-import Map from "@arcgis/core/Map";
 import SceneView from "@arcgis/core/views/SceneView";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
@@ -21,9 +20,6 @@ function CheckingGPA() {
     },
   });
   webscene.layers.add(buildingLayer);
-  const map = new Map({
-    basemap: "topo-vector",
-  });
   const excludedLayer = [];
 
   useEffect(() => {

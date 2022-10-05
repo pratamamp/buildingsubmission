@@ -174,7 +174,7 @@ function SearchPersil() {
                 Batal
               </button>
               <button
-                className="border rounded-lg bg-[#12519E] text-white h-4/5 w-1/3"
+                className="border border-red-500 rounded-lg bg-[#12519E] text-white h-3/5 w-1/3"
                 onClick={handleSubmit}
               >
                 Selanjutnya
@@ -184,7 +184,7 @@ function SearchPersil() {
         )}
       </div>
       <div className="flex-auto">
-        <div className="w-full h-[calc(100vh_-_1rem)]">
+        <div className="w-full h-[calc(100vh_-_9.5rem)]">
           <div className="w-full h-full" ref={mapRef}></div>
         </div>
       </div>
