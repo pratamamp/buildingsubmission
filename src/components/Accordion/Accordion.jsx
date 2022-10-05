@@ -10,7 +10,7 @@ const ketentuan = [
   {
     checked: false,
     title: "Koefisien Dasar Bangunan (KDB)",
-    detail: "koefisien dd <br/> line 2",
+    detail: "koefisien dasar 50ha",
   },
 ];
 

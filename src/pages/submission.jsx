@@ -54,13 +54,13 @@ function SubmissionPage() {
                 </label>
                 <textarea
                   id="message"
-                  rows={10}
+                  rows={5}
                   className="block p-2.5 w-full text-sm text-gray-500 bg-gray-50 rounded-lg border focus:border-gray-600 text-gray-500 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   defaultValue={""}
                 />
               </div>
             </div>
-            <div className="mt-auto w-full">
+            <div className="w-full">
               <button
                 className="bg-[#12519E] rounded-md text-white w-full py-3 hover:bg-[#06489a]"
                 type="submit"

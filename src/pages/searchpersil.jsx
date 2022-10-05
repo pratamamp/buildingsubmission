@@ -1,14 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MapView from "@arcgis/core/views/MapView";
+import Map from "@arcgis/core/Map";
 
 function SearchPersil() {
   const navigate = useNavigate();
   const [select, setSelect] = useState(true);
   const handleSubmit = (e) => {
     e.preventDefault();
-
     navigate("/submission/3");
   };
+  const mapRef = useRef();
+
+  useEffect(() => {
+    if (mapRef.current) {
+      const map = new Map({
+        basemap: "topo-vector",
+      });
+      new MapView({
+        map,
+        container: mapRef.current,
+        extent: {
+          xmin: 116.497733,
+          xmax: 116.884177,
+          ymin: -1.083494,
+          ymax: -0.856659,
+          spatialReference: 4326,
+        },
+        constraints: {
+          minZoom: 3,
+          maxZoom: 15,
+        },
+        zoom: 5,
+      });
+    }
+  }, []);
+
   return (
     <div className="flex">
       <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
@@ -143,7 +170,7 @@ function SearchPersil() {
             </div>
 
             <div className="flex justify-evenly items-center font-poppins w-full h-16 mt-auto">
-              <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-4/5 w-1/3">
+              <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-3/5 w-1/3">
                 Batal
               </button>
               <button
@@ -155,6 +182,11 @@ function SearchPersil() {
             </div>
           </div>
         )}
+      </div>
+      <div className="flex-auto">
+        <div className="w-full h-[calc(100vh_-_1rem)]">
+          <div className="w-full h-full" ref={mapRef}></div>
+        </div>
       </div>
     </div>
   );
