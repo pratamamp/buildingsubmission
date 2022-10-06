@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MapView from "@arcgis/core/views/MapView";
 import Map from "@arcgis/core/Map";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Feature from "@arcgis/core/widgets/Feature";
+import Handles from "@arcgis/core/core/Handles";
 
 function SearchPersil() {
   const navigate = useNavigate();
@@ -11,27 +14,74 @@ function SearchPersil() {
     navigate("/submission/3");
   };
   const mapRef = useRef();
+  const handles = new Handles();
+  const URLZonasi = import.meta.env.VITE_ZONASI_URL;
+  const URLPersil = import.meta.env.VITE_PERSIL_URL;
+  const featureZonasi = new FeatureLayer({
+    url: URLZonasi,
+    outFields: ["*"],
+  });
+  const featurePersil = new FeatureLayer({
+    url: URLPersil,
+    outFields: ["*"],
+  });
+  const map = new Map({
+    basemap: "topo-vector",
+    ground: "world-elevation",
+    layers: [featurePersil, featureZonasi],
+  });
+
+  function onInitActiveView(view) {
+    view.when().then(() => {
+      view.on("click", (event) => {
+        handles.removeAll();
+
+        view.popup.fetchFeatures(event).then((response) => {
+          response.promisesPerLayerView.forEach((fetchResult) => {
+            const layerView = fetchResult.layerView;
+
+            fetchResult.promises.then((graphics) => {
+              if (graphic.length > 0) {
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "container";
+
+                featureContainer.appendChild(groupDiv);
+
+                graphics.forEach((graphic) => {
+                  if (typeof layerView.highlight === "funciton") {
+                    handles.add(layerView.highlight(graphic));
+                  }
+
+                  const featureChild = new Feature({
+                    container: document.createElement("div"),
+                    graphic: graphic,
+                    map: view.map,
+                    spatialReference: view.spatialReference,
+                  });
+                  groupDiv.appendChild(featureChild.container);
+                });
+              }
+            });
+          });
+        });
+      });
+    });
+  }
 
   useEffect(() => {
     if (mapRef.current) {
-      const map = new Map({
-        basemap: "topo-vector",
-      });
       new MapView({
         map,
         container: mapRef.current,
-        extent: {
-          xmin: 116.497733,
-          xmax: 116.884177,
-          ymin: -1.083494,
-          ymax: -0.856659,
-          spatialReference: 4326,
+        center: [106.79755, -6.2541325],
+        popup: {
+          autoOpenEnabled: false,
         },
+        zoom: 17,
         constraints: {
-          minZoom: 3,
-          maxZoom: 15,
+          minZoom: 17,
+          maxZoom: 20,
         },
-        zoom: 5,
       });
     }
   }, []);
@@ -174,7 +224,7 @@ function SearchPersil() {
                 Batal
               </button>
               <button
-                className="border border-red-500 rounded-lg bg-[#12519E] text-white h-3/5 w-1/3"
+                className="border border-gray-300 border-2 rounded-lg bg-[#12519E] text-white h-3/5 w-1/3"
                 onClick={handleSubmit}
               >
                 Selanjutnya

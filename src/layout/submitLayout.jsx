@@ -23,7 +23,7 @@ function SubmitLayout() {
             <li>
               <Link to="/">Beranda</Link>
             </li>
-            <li>
+            <li className="">
               <Link to="/submission">Submit Izin</Link>
             </li>
             <li>

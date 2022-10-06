@@ -46,10 +46,6 @@ function CheckingGPA() {
                 layer.visible = false;
                 break;
               // Extract the layers that should not be hidden by the slice widget
-              case "Doors":
-                doorsLayer = layer;
-                excludedLayers.push(layer);
-                break;
               default:
                 layer.visible = true;
             }
