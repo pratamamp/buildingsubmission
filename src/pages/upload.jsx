@@ -11,7 +11,7 @@ function UploadFiles() {
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
-  const timeoutDelay = 90 * 1000;
+  const timeoutDelay = 30 * 1000;
 
   function handleNavigation(e) {
     e.preventDefault();
@@ -47,6 +47,7 @@ function UploadFiles() {
     const interval = setTimeout(() => {
       setFinishedLoading(true);
       clearTimeout(interval);
+      setShowLoading(false)
     }, timeoutDelay);
     event.target.value = null;
   }

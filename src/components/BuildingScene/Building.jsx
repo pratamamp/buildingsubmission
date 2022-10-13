@@ -15,17 +15,19 @@ export function BuildingScene({ className }) {
   const divRef = useRef();
   const persilId = localStorage.getItem("persilId");
   let buildingLayer;
-  if (persilId === "30") {
+  if (persilId === "17") {
     buildingLayer = new BuildingSceneLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model1/SceneServer",
     });
-  } else if (persilId === "17") {
+  } 
+  else if (persilId === "30") {
     buildingLayer = new BuildingSceneLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/BIM_model2/SceneServer",
     });
-  } else if (persilId === "44") {
-    buildingLayer = new SceneLayer({
-      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/Upload_SKP_1a/SceneServer",
+  } 
+  else if (persilId === "44") {
+    buildingLayer = new BuildingSceneLayer({
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/technical_school_georef/SceneServer",
     });
   } else if (persilId === "184") {
     buildingLayer = new SceneLayer({
@@ -85,7 +87,7 @@ export function BuildingScene({ className }) {
         permenFeature.popupTemplate = permenFeature.createPopupTemplate();
       });
 
-      if (persilId === "30" || persilId === "17") {
+      if (persilId === "30" || persilId === "17" || persilId === "44") {
         const buildingExplorer = new BuildingExplorer({
           view: currentView,
           layers: [buildingLayer],
