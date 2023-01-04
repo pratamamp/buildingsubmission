@@ -3,89 +3,104 @@ import { useNavigate } from "react-router-dom";
 import MapView from "@arcgis/core/views/MapView";
 import Map from "@arcgis/core/Map";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import Feature from "@arcgis/core/widgets/Feature";
 import Handles from "@arcgis/core/core/Handles";
+import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import Query from "@arcgis/core/rest/support/Query";
+import * as query from "@arcgis/core/rest/query";
 
 function SearchPersil() {
   const navigate = useNavigate();
-  const [select, setSelect] = useState(true);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/submission/3");
-  };
-  const mapRef = useRef();
-  const handles = new Handles();
-  const URLZonasi = import.meta.env.VITE_ZONASI_URL;
+  const [select, setSelect] = useState(false);
+  const mapRef = useRef(null);
+
   const URLPersil = import.meta.env.VITE_PERSIL_URL;
-  const featureZonasi = new FeatureLayer({
-    url: URLZonasi,
-    outFields: ["*"],
-  });
+  const renderPoly = {
+    type: "simple",
+    symbol: {
+      type: "simple-fill",
+      color: [20, 100, 105],
+      outline: {
+        color: "lightgray",
+        width: 0.5,
+      },
+    },
+  };
   const featurePersil = new FeatureLayer({
     url: URLPersil,
     outFields: ["*"],
-  });
-  const map = new Map({
-    basemap: "topo-vector",
-    ground: "world-elevation",
-    layers: [featurePersil, featureZonasi],
+    renderer: renderPoly,
+    opacity: 0.9,
   });
 
-  function onInitActiveView(view) {
+  const handles = new Handles();
+  const polygonGraphicsLayer = new GraphicsLayer();
+  const selected = new GraphicsLayer();
+
+  function selectedFeatures(geometry) {
+    selected.removeAll();
+    let queryUrl = URLPersil;
+    let queryObject = new Query();
+    queryObject.returnGeometry = true;
+    queryObject.outFields = ["*"];
+    queryObject.geometry = geometry;
+
+    query.executeQueryJSON(queryUrl, queryObject).then(function (result) {
+      const graphics = result.features.map((r) => {
+        r.symbol = {
+          type: "simple-fill",
+          color: "lightblue",
+          outline: {
+            color: "#333",
+            width: 2.5,
+          },
+        };
+        return r;
+      });
+      selected.addMany(graphics);
+      setSelect(true);
+    });
+  }
+
+  function onSelectMap(view) {
     view.when().then(() => {
-      view.on("click", (event) => {
+      view.on("click", (screenPoint) => {
         handles.removeAll();
 
-        view.popup.fetchFeatures(event).then((response) => {
-          response.promisesPerLayerView.forEach((fetchResult) => {
-            const layerView = fetchResult.layerView;
-
-            fetchResult.promises.then((graphics) => {
-              if (graphic.length > 0) {
-                const groupDiv = document.createElement("div");
-                groupDiv.className = "container";
-
-                featureContainer.appendChild(groupDiv);
-
-                graphics.forEach((graphic) => {
-                  if (typeof layerView.highlight === "funciton") {
-                    handles.add(layerView.highlight(graphic));
-                  }
-
-                  const featureChild = new Feature({
-                    container: document.createElement("div"),
-                    graphic: graphic,
-                    map: view.map,
-                    spatialReference: view.spatialReference,
-                  });
-                  groupDiv.appendChild(featureChild.container);
-                });
-              }
-            });
-          });
-        });
+        const point = view.toMap(screenPoint);
+        selectedFeatures(point);
       });
     });
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/submission/3");
+  }
+
   useEffect(() => {
     if (mapRef.current) {
+      const map = new Map({
+        basemap: "topo-vector",
+        layers: [featurePersil, selected, polygonGraphicsLayer],
+      });
+
       new MapView({
         map,
         container: mapRef.current,
-        center: [106.79755, -6.2541325],
-        popup: {
-          autoOpenEnabled: false,
+        ui: {
+          components: ["attribution"],
         },
-        zoom: 17,
-        constraints: {
-          minZoom: 17,
-          maxZoom: 20,
+        extent: {
+          xmin: 106.8026,
+          xmax: 106.8322,
+          ymin: -6.1875896975,
+          ymax: -6.1564480124,
         },
+      }).when((view) => {
+        onSelectMap(view);
       });
     }
   }, []);
-
   return (
     <div className="flex">
       <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
