@@ -48,7 +48,7 @@ function SearchPersil() {
                 featureContainer.appendChild(groupDiv);
 
                 graphics.forEach((graphic) => {
-                  if (typeof layerView.highlight === "funciton") {
+                  if (typeof layerView.highlight === "function") {
                     handles.add(layerView.highlight(graphic));
                   }
 
@@ -82,13 +82,15 @@ function SearchPersil() {
           minZoom: 17,
           maxZoom: 20,
         },
+      }).when((view) => {
+        onInitActiveView(view);
       });
     }
   }, []);
 
   return (
     <div className="flex">
-      <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
+      <div className="w-1/5 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
         <div className="mt-10">
           <h2 className="font-poppins text-2xl font-semibold text-black">
             Pilih Persil

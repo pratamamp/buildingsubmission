@@ -56,7 +56,7 @@ function CheckingGPA() {
   }, []);
   return (
     <div className="flex">
-      <div className="flex flex-col w-1/4 h-[calc(100vh_-_9.5rem)] bg-gray-50 border-r border-[#D2D2D2]">
+      <div className="flex flex-col w-1/5 h-[calc(100vh_-_9.5rem)] bg-gray-50 border-r border-[#D2D2D2]">
         <div className="flex-grow w-full">
           <h2 className="p-4 text-2xl font-poppins font-semibold">
             Pemeriksaan GPA
@@ -77,7 +77,7 @@ function CheckingGPA() {
           </button>
         </div>
       </div>
-      <div className="w-3/4 bg-gray-100">
+      <div className="w-4/5 bg-gray-100">
         <div className="w-full h-[calc(100vh_-_9.5rem)]">
           <div className="w-full h-full" ref={mapRef}></div>
         </div>
