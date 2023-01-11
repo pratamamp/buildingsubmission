@@ -91,7 +91,7 @@ function SearchPersil() {
       <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
         <div className="mt-10">
           <h2 className="font-poppins text-2xl font-semibold text-black">
-            Pilih Persil
+            Pilih Lokasi
           </h2>
           <p className="font-poppins my-2 text-[1rem] text-[#5C5C5C]">
             Pilih Atau Cari Persil Tanah Untuk Pengajuan Melalui Peta Yang

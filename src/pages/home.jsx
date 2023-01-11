@@ -56,7 +56,7 @@ function Home() {
       </div>
       <div className="flex justify-center items-center h-[calc(100vh_-_7rem)]">
         <h2 className=" font-bold font-poppins text-7xl w-2/3 text-center text-white">
-          Persetujuan Bangunan Gedung
+          Input Data 3D Bangunan
         </h2>
       </div>
       <div className="bg-gradient-to-b from-[#3883ed] to-white/0 inset-0 -z-10 h-1/4" />
