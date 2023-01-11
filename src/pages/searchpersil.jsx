@@ -1,97 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MapView from "@arcgis/core/views/MapView";
-import Map from "@arcgis/core/Map";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import Feature from "@arcgis/core/widgets/Feature";
-import Handles from "@arcgis/core/core/Handles";
 
 function SearchPersil() {
   const navigate = useNavigate();
   const [select, setSelect] = useState(true);
   const handleSubmit = (e) => {
     e.preventDefault();
+
     navigate("/submission/3");
   };
-  const mapRef = useRef();
-  const handles = new Handles();
-  const URLZonasi = import.meta.env.VITE_ZONASI_URL;
-  const URLPersil = import.meta.env.VITE_PERSIL_URL;
-  const featureZonasi = new FeatureLayer({
-    url: URLZonasi,
-    outFields: ["*"],
-  });
-  const featurePersil = new FeatureLayer({
-    url: URLPersil,
-    outFields: ["*"],
-  });
-  const map = new Map({
-    basemap: "topo-vector",
-    ground: "world-elevation",
-    layers: [featurePersil, featureZonasi],
-  });
-
-  function onInitActiveView(view) {
-    view.when().then(() => {
-      view.on("click", (event) => {
-        handles.removeAll();
-
-        view.popup.fetchFeatures(event).then((response) => {
-          response.promisesPerLayerView.forEach((fetchResult) => {
-            const layerView = fetchResult.layerView;
-
-            fetchResult.promises.then((graphics) => {
-              if (graphic.length > 0) {
-                const groupDiv = document.createElement("div");
-                groupDiv.className = "container";
-
-                featureContainer.appendChild(groupDiv);
-
-                graphics.forEach((graphic) => {
-                  if (typeof layerView.highlight === "funciton") {
-                    handles.add(layerView.highlight(graphic));
-                  }
-
-                  const featureChild = new Feature({
-                    container: document.createElement("div"),
-                    graphic: graphic,
-                    map: view.map,
-                    spatialReference: view.spatialReference,
-                  });
-                  groupDiv.appendChild(featureChild.container);
-                });
-              }
-            });
-          });
-        });
-      });
-    });
-  }
-
-  useEffect(() => {
-    if (mapRef.current) {
-      new MapView({
-        map,
-        container: mapRef.current,
-        center: [106.79755, -6.2541325],
-        popup: {
-          autoOpenEnabled: false,
-        },
-        zoom: 17,
-        constraints: {
-          minZoom: 17,
-          maxZoom: 20,
-        },
-      });
-    }
-  }, []);
-
   return (
     <div className="flex">
       <div className="w-1/4 bg-gray-50 h-[calc(100vh_-_9.5rem)] px-4 flex flex-col text-[#424242] border-r border-[#D2D2D2]">
         <div className="mt-10">
           <h2 className="font-poppins text-2xl font-semibold text-black">
-            Pilih Lokasi
+            Pilih Persil
           </h2>
           <p className="font-poppins my-2 text-[1rem] text-[#5C5C5C]">
             Pilih Atau Cari Persil Tanah Untuk Pengajuan Melalui Peta Yang
@@ -220,11 +143,11 @@ function SearchPersil() {
             </div>
 
             <div className="flex justify-evenly items-center font-poppins w-full h-16 mt-auto">
-              <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-3/5 w-1/3">
+              <button className="border border-[#757575]  text-[#757575] rounded-lg bg-white h-4/5 w-32">
                 Batal
               </button>
               <button
-                className="border border-gray-300 border-2 rounded-lg bg-[#12519E] text-white h-3/5 w-1/3"
+                className="border rounded-lg bg-[#12519E] text-white h-4/5 w-32"
                 onClick={handleSubmit}
               >
                 Selanjutnya
@@ -232,11 +155,6 @@ function SearchPersil() {
             </div>
           </div>
         )}
-      </div>
-      <div className="flex-auto">
-        <div className="w-full h-[calc(100vh_-_9.5rem)]">
-          <div className="w-full h-full" ref={mapRef}></div>
-        </div>
       </div>
     </div>
   );
