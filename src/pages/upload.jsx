@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaGlobe, FaPencilAlt, FaCloudUploadAlt } from "react-icons/fa";
 import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
+import CounterClockIcon from "../assets/counterclockicon";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -86,11 +87,23 @@ function UploadFiles() {
                 <FaPencilAlt className="w-6 h-6 text-[#12519E]" />
                 <h2 className="text-[#717171]">Ketentuan lainnya</h2>
               </div>
+
+              <div className="py-3">
+                <h2 className=" font-bold">Perhatian !</h2>
+                Proses pengunggahan model 3D dapat memakan waktu yang cukup
+                lama, sesuai dengan besaran data.​ Anda akan menerima notifikasi
+                dan link untuk menampilkan data via email apabila proses unggah
+                sudah selesai.​
+              </div>
             </div>
           </div>
 
           {/* dropbox */}
-
+          <div className="absolute top-[45%] left-1/3 w-1/3 h-72 rounded-lg bg-white border-2">
+            <div className="p-3">
+              <CounterClockIcon className="text-red-500 w-16" />
+            </div>
+          </div>
           <div className="flex-auto flex m-16">
             <div className="rounded-md bg-white/40 w-full border border-[#0161D5] flex flex-col justify-center items-center">
               {showLoading ? (
