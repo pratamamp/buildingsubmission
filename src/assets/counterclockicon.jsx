@@ -14,6 +14,7 @@ function CounterClockIcon(className) {
         fill="currentColor"
         fillRule="evenodd"
         clipRule="evenodd"
+        transform="translate(4 4)"
       />
     </svg>
   );
