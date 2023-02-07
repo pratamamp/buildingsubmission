@@ -60,6 +60,10 @@ function UploadFiles() {
   }
   useEffect(() => {}, [loadingFinished]);
 
+  function doSomething(e) {
+    console.log(e.target);
+  }
+
   return (
     <div className="w-full h-[calc(100vh_-_9.5rem)] flex justify-center items-center">
       <div className="w-9/12 bg-white rounded-lg shadow-lg shadow-gray-300 font-poppins flex flex-col">
@@ -146,8 +150,11 @@ function UploadFiles() {
               {showLoading ? (
                 <div>
                   <Player
-                    src={"/loading-animation-blue.json"}
-                    loop
+                    src={"/loading.json"}
+                    onEvent={(event) => {
+                      if (event === "frame") doSomething();
+                    }}
+                    controls={true}
                     autoplay
                     className=" w-52 h-52"
                   />
