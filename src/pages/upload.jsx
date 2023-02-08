@@ -5,6 +5,7 @@ import { BsFileEarmarkText } from "react-icons/bs";
 import CounterClockIcon from "../assets/counterclockicon";
 import { RiCloseFill } from "react-icons/ri";
 import loadingAnimation from "./upload-animation.json";
+import successAnimation from "./success.json";
 import Lottie from "lottie-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -64,7 +65,7 @@ function UploadFiles() {
   useEffect(() => {
     if (loadingFinished) {
       lottieRef.current.stop();
-      lottieRef.current.destroy();
+      lottieendRef.current.play();
     }
   }, [loadingFinished]);
 
@@ -113,6 +114,7 @@ function UploadFiles() {
               </div>
             </div>
           </div>
+          {/* 
           {loadingFinished && (
             <div
               className="absolute top-[45%] left-1/3 w-1/3 rounded-lg bg-white border-2 space-y-3 px-5 pt-4 divide-y-2 z-30"
@@ -147,23 +149,37 @@ function UploadFiles() {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
           {/* dropbox */}
           <div className="flex-auto flex p-16">
             <div className="rounded-md bg-white/40 w-full border border-[#0161D5] flex flex-col justify-center items-center">
               {showLoading ? (
                 <div>
-                  <Lottie
-                    lottieRef={lottieRef}
-                    animationData={loadingAnimation}
-                    loop={true}
-                    className="h-24"
-                  />
-                  <h2 className="text-center font-poppins">
-                    Pengecekan GPA sedang dilakukan.
-                    <br />
-                    Mohon tunggu sebentar...
-                  </h2>
+                  {loadingFinished == false ? (
+                    <>
+                      <Lottie
+                        lottieRef={lottieRef}
+                        animationData={loadingAnimation}
+                        loop={true}
+                        className="h-24"
+                      />
+
+                      <h2 className="text-center font-poppins">
+                        Pengecekan GPA sedang dilakukan.
+                        <br />
+                        Mohon tunggu sebentar...
+                      </h2>
+                    </>
+                  ) : (
+                    <>
+                      <Lottie
+                        lottieRef={lottieendRef}
+                        animationData={successAnimation}
+                        loop={false}
+                        className="h-36"
+                      />
+                    </>
+                  )}
                 </div>
               ) : (
                 <>
