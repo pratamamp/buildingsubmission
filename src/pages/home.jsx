@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import bgImage from "/home-bg.jpeg";
 import logo from "/logodki.svg";
 import { Link } from "react-router-dom";
+import videoBg from "/videoart.mp4";
 
 function Home() {
+  function supportsHEVCAlpha() {
+    const navigator = window.navigator;
+    const ua = navigator.userAgent.toLowerCase();
+    const hasMediaCapabilities = !!(
+      navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo
+    );
+    const isSafari =
+      ua.indexOf("safari") != -1 &&
+      !(ua.indexOf("chrome") != -1) &&
+      ua.indexOf("version/") != -1;
+    return isSafari && hasMediaCapabilities;
+  }
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <section className="absolute top-0 left-0 right-0 -z-10 w-full max-h-screen overflow-clip">
@@ -20,7 +36,7 @@ function Home() {
             <img src={logo} alt="logo dki" className=" object-contain" />
           </div>
           <ul className="flex space-x-4 items-center font-poppins text-white">
-            <li className=" border-b-2 pb-2">
+            <li className="border-b-2 pb-2">
               <Link to="/">Beranda</Link>
             </li>
             <li className="pb-2">
@@ -40,7 +56,7 @@ function Home() {
       </div>
       <div className="flex justify-center items-center h-[calc(100vh_-_7rem)]">
         <h2 className=" font-bold font-poppins text-7xl w-2/3 text-center text-white">
-          Persetujuan Bangunan Gedung
+          Input Data 3D Bangunan
         </h2>
       </div>
       <div className="bg-gradient-to-b from-[#3883ed] to-white/0 inset-0 -z-10 h-1/4" />

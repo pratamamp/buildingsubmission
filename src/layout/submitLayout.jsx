@@ -23,7 +23,7 @@ function SubmitLayout() {
             <li>
               <Link to="/">Beranda</Link>
             </li>
-            <li>
+            <li className="">
               <Link to="/submission">Submit Izin</Link>
             </li>
             <li>
@@ -50,7 +50,7 @@ function SubmitLayout() {
                 1
               )}
             </div>
-            <p className="text-gray-500">Form Pengajuan Izin</p>
+            <p className="text-gray-500">Pilih Lokasi</p>
           </li>
           <li
             className={`flex items-center space-x-2 ${
@@ -66,23 +66,7 @@ function SubmitLayout() {
                 2
               )}
             </div>
-            <p className="text-gray-500">Pilih Persil</p>
-          </li>
-          <li
-            className={`flex items-center space-x-2 ${
-              location.pathname === "/submission/3"
-                ? "stepper-active"
-                : "stepper"
-            }`}
-          >
-            <div>
-              {location.pathname === "/submission/3" ? (
-                <BsCheckLg className="w-3 h-3 text-gray-200" />
-              ) : (
-                3
-              )}
-            </div>
-            <p className="text-gray-500">Upload GPA 3D</p>
+            <p className="text-gray-500">Unggah Model 3D</p>
           </li>
           <li
             className={`flex items-center space-x-2 ${
@@ -95,10 +79,10 @@ function SubmitLayout() {
               {location.pathname === "/submission/4" ? (
                 <BsCheckLg className="w-3 h-3 text-gray-200" />
               ) : (
-                4
+                3
               )}
             </div>
-            <p className="text-gray-500">Pemeriksaan GPA</p>
+            <p className="text-gray-500">Hasil Unggahan</p>
           </li>
         </ol>
       </div>

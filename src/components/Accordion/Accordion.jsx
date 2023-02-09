@@ -7,13 +7,39 @@ import { useRef } from "react";
 const ketentuan = [
   {
     checked: true,
-    title: "Ketentuan Pembangunan",
-    detail: "KDB GPA 50",
+    title: "Koefisien Dasar Bangunan",
+    detail: "KDB GPA 50 <br /> KDB Maksimal 60</p>",
   },
   {
     checked: false,
-    title: "Koefisien Dasar Bangunan (KDB)",
-    detail: "koefisien dd <br/> line 2",
+    title: "Koefisien Lantai Bangunan (KLB)",
+    detail: "KLB GPA 40 <br /> KLB Maksimal 50",
+  },
+  ,
+  {
+    checked: true,
+    title: "Koefisien Dasar Hijau (KDH)",
+    detail: "KDH GPA 50 <br /> KDH Maksimal 60",
+  },
+  {
+    checked: true,
+    title: "Koefisien Tapak Basement (KTB)",
+    detail: "KTB GPA 50 <br /> KTB Maksimal 60",
+  },
+  {
+    checked: false,
+    title: "Jumlah Lantai",
+    detail: "Jumlah Lantai GPA 50 <br /> Jumlah Lantai Maksimal 60",
+  },
+  {
+    checked: true,
+    title: "Tinggi Bangunan",
+    detail: "Tinggi GPA 150 <br /> Tinggi Maksimal 200",
+  },
+  {
+    checked: true,
+    title: "Sempadan Jalan",
+    detail: "GPA 330 <br /> KDH Maksimal 430",
   },
 ];
 

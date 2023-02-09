@@ -6,28 +6,29 @@ import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Search from "@arcgis/core/widgets/Search";
 import Editor from "@arcgis/core/widgets/Editor";
+import {webMercatorToGeographic} from "@arcgis/core/geometry/support/webMercatorUtils.js";
 
-export const PersilMap = ({ className, setDataPersil }) => {
+export const PersilMap = ({ className, setDataPersil, setMouseCoord }) => {
   esriConfig.apiKey =
     "AAPK4b3895d07794469dbd57a083f1ac4fa52nP3iH2KjKBQ2wRSVFdz17o7vuCF-lo_yMcmcIDhijUKcuRGC_oNSu5JKRBZDjYn";
 
   const mapRef = useRef(null);
-  useEffect(() => {
+  useEffect((geometry, isLinear) => {
     const persilFeature = new FeatureLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KRK_Persil/FeatureServer/3",
       // url: "https://tataruang.jakarta.go.id/server/rest/services/peta_operasional/Informasi_Rencana_Kota_DKI_Jakarta_View/FeatureServer/3",
       outFields: ["*"],
     });
-    const permenFeature = new FeatureLayer({
-      url: "https://jakartasatu.jakarta.go.id/server/rest/services/Peta_OPS_Permen14_2020/Peta_OPS_Permen_14_2020/MapServer/0"
-    })
+    // const permenFeature = new FeatureLayer({
+    //   url: "https://jakartasatu.jakarta.go.id/server/rest/services/Peta_OPS_Permen14_2020/Peta_OPS_Permen_14_2020/MapServer/0"
+    // })
     const locationFeature = new FeatureLayer({
       url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/0",
     });
 
     const map = new Map({
       basemap: "arcgis-topographic", // Basemap layer service
-      layers: [permenFeature, persilFeature, locationFeature],
+      layers: [persilFeature, locationFeature],
     });
     const view = new MapView({
       map: map,
@@ -81,6 +82,14 @@ export const PersilMap = ({ className, setDataPersil }) => {
         });
       });
     });
+
+    const getCoordinates = (evt) => {
+      const point = view.toMap({x: evt.x, y: evt.y})
+      const mp = webMercatorToGeographic(point, isLinear);
+      setMouseCoord(mp)
+    }
+
+    view.on("pointer-move", getCoordinates)
 
     return () => {
       view && view.destroy();

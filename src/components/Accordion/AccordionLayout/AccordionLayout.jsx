@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import {
   IoIosArrowForward,
   IoIosArrowDown,
   IoIosCloseCircle,
 } from "react-icons/io";
+import { Interweave, Markup } from "interweave";
 
 function AccordionLayout({
   title,
@@ -41,9 +42,9 @@ function AccordionLayout({
       </div>
 
       {activeIndex === index && (
-        <p className=" font-poppins text-sm shadow-3xl shadow-cyan-500/50 p-4 pl-14 mb-6">
-          {children}
-        </p>
+        <div className="font-poppins text-sm shadow-3xl shadow-cyan-500/50 p-4 pl-14 mb-6">
+          <Interweave content={children} />
+        </div>
       )}
     </div>
   );
