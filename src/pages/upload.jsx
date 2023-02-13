@@ -24,7 +24,8 @@ function UploadFiles() {
 
   function handleNavigation(e) {
     e.preventDefault();
-    loadingFinished ? navigate("/submission/4") : "";
+    e.target.disable;
+    loadingFinished && !error ? navigate("/submission/4") : "";
   }
 
   function handleUpload(event) {
@@ -235,7 +236,7 @@ function UploadFiles() {
           </button>
           <button
             className={`rounded-lg py-2 w-28 border border-[#EEEEEE] ${
-              loadingFinished
+              loadingFinished && !error
                 ? "bg-[#12519E] text-[#d6e9e2]"
                 : "bg-[#EEEEEE] text-[#757575]"
             }`}
