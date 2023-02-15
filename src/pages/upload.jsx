@@ -4,14 +4,18 @@ import { BiTargetLock } from "react-icons/bi";
 import { BsFileEarmarkText } from "react-icons/bs";
 import CounterClockIcon from "../assets/counterclockicon";
 import { RiCloseFill } from "react-icons/ri";
-import { Player } from "@lottiefiles/react-lottie-player";
+import loadingAnimation from "./upload-animation.json";
+import successAnimation from "./success.json";
+import Lottie from "lottie-react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UploadFiles() {
   const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
   const inputRef = useRef(null);
+  const lottieRef = useRef();
+  const lottieendRef = useRef();
   const navigate = useNavigate();
   const timeoutDelay = 3 * 1000;
 
@@ -25,6 +29,25 @@ function UploadFiles() {
   }
 
   async function handleFileChange(event) {
+    // const fileObj = event.target.files && event.target.files[0];
+    // if (!fileObj) {
+    //   return;
+    // }
+
+    // const formData = new FormData();
+
+    // formData.append("selectedFile", fileObj);
+    // try {
+    //   const response = await axios({
+    //     method: "post",
+    //     url: "/api/upload/file",
+    //     data: formData,
+    //     headers: { "Content-Type": "multipart/form-data" },
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // reset file input
     setShowLoading(true);
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
@@ -40,7 +63,10 @@ function UploadFiles() {
         url: "http://localhost:8000/upload",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-      });
+      }).then((response) => {
+        setFinishedLoading(true);
+        localStorage.setItem("glbFilename", response.data.glbName);
+      })
     } catch (error) {
       console.error(error);
     }
@@ -48,8 +74,7 @@ function UploadFiles() {
 
     // setFinishedLoading(true);
     // const interval = setTimeout(() => {
-      setFinishedLoading(true);
-      clearTimeout(interval);
+
     // }, timeoutDelay);
     event.target.value = null;
   }
@@ -59,7 +84,12 @@ function UploadFiles() {
     const closedBtn = () => document.getElementById("notif").remove();
     closedBtn();
   }
-  useEffect(() => {}, [loadingFinished]);
+  useEffect(() => {
+    if (loadingFinished) {
+      lottieRef.current.stop();
+      lottieendRef.current.play();
+    }
+  }, [loadingFinished]);
 
   return (
     <div className="w-full h-[calc(100vh_-_9.5rem)] flex justify-center items-center">
@@ -106,9 +136,10 @@ function UploadFiles() {
               </div>
             </div>
           </div>
+          {/*
           {loadingFinished && (
             <div
-              className="absolute top-[45%] left-1/3 w-1/3 rounded-lg bg-white border-2 space-y-3 px-5 pt-4 divide-y-2"
+              className="absolute top-[45%] left-1/3 w-1/3 rounded-lg bg-white border-2 space-y-3 px-5 pt-4 divide-y-2 z-30"
               id="notif"
             >
               <div className="flex items-center space-x-3 justify-between">
@@ -140,23 +171,37 @@ function UploadFiles() {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
           {/* dropbox */}
           <div className="flex-auto flex p-16">
             <div className="rounded-md bg-white/40 w-full border border-[#0161D5] flex flex-col justify-center items-center">
               {showLoading ? (
                 <div>
-                  <Player
-                    src={"/loading-animation-blue.json"}
-                    loop
-                    autoplay
-                    className=" w-52 h-52 fill-green-500"
-                  />
-                  <h2 className="text-center font-poppins">
-                    Pengecekan GPA sedang dilakukan.
-                    <br />
-                    Mohon tunggu sebentar...
-                  </h2>
+                  {loadingFinished == false ? (
+                    <>
+                      <Lottie
+                        lottieRef={lottieRef}
+                        animationData={loadingAnimation}
+                        loop={true}
+                        className="h-24"
+                      />
+
+                      <h2 className="text-center font-poppins">
+                        Pengecekan GPA sedang dilakukan.
+                        <br />
+                        Mohon tunggu sebentar...
+                      </h2>
+                    </>
+                  ) : (
+                    <>
+                      <Lottie
+                        lottieRef={lottieendRef}
+                        animationData={successAnimation}
+                        loop={false}
+                        className="h-36"
+                      />
+                    </>
+                  )}
                 </div>
               ) : (
                 <>
@@ -183,7 +228,7 @@ function UploadFiles() {
                     ref={inputRef}
                     onChange={handleFileChange}
                     className="hidden"
-                    accept=".skp,.rvt"
+                    accept=".zip"
                   />
                 </>
               )}
