@@ -6,6 +6,7 @@ import CounterClockIcon from "../assets/counterclockicon";
 import { RiCloseFill } from "react-icons/ri";
 import loadingAnimation from "./upload-animation.json";
 import successAnimation from "./success.json";
+import failAnimation from "./failed-animation.json";
 import Lottie from "lottie-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -13,15 +14,18 @@ import { useNavigate } from "react-router-dom";
 function UploadFiles() {
   const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
+  const [error, setError] = useState(true);
   const inputRef = useRef(null);
   const lottieRef = useRef();
   const lottieendRef = useRef();
+  const lottieUploadfailRef = useRef();
   const navigate = useNavigate();
   const timeoutDelay = 3 * 1000;
 
   function handleNavigation(e) {
     e.preventDefault();
-    loadingFinished ? navigate("/submission/4") : "";
+    e.target.disable;
+    loadingFinished && !error ? navigate("/submission/4") : "";
   }
 
   function handleUpload(event) {
@@ -64,10 +68,13 @@ function UploadFiles() {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       }).then((response) => {
+        setError(false);
         setFinishedLoading(true);
         localStorage.setItem("glbFilename", response.data.glbName);
       })
     } catch (error) {
+      setError(true);
+      setFinishedLoading(true);
       console.error(error);
     }
     // reset file input
@@ -87,7 +94,8 @@ function UploadFiles() {
   useEffect(() => {
     if (loadingFinished) {
       lottieRef.current.stop();
-      lottieendRef.current.play();
+
+      !error ? lottieendRef.current.play() : lottieUploadfailRef.current.play();
     }
   }, [loadingFinished]);
 
@@ -192,14 +200,24 @@ function UploadFiles() {
                         Mohon tunggu sebentar...
                       </h2>
                     </>
+                  ) : !error ? (
+                    <Lottie
+                      lottieRef={lottieendRef}
+                      animationData={successAnimation}
+                      loop={false}
+                      className="h-36"
+                    />
                   ) : (
                     <>
                       <Lottie
-                        lottieRef={lottieendRef}
-                        animationData={successAnimation}
+                        lottieRef={lottieUploadfailRef}
+                        animationData={failAnimation}
                         loop={false}
                         className="h-36"
                       />
+                      <h2 className=" text-red-600 text-center">
+                        Gagal meng-upload File!
+                      </h2>
                     </>
                   )}
                 </div>
@@ -244,7 +262,7 @@ function UploadFiles() {
           </button>
           <button
             className={`rounded-lg py-2 w-28 border border-[#EEEEEE] ${
-              loadingFinished
+              loadingFinished && !error
                 ? "bg-[#12519E] text-[#d6e9e2]"
                 : "bg-[#EEEEEE] text-[#757575]"
             }`}
