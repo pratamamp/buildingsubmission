@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.24.7",
-    "@lottiefiles/react-lottie-player": "^3.4.7",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "interweave": "^13.0.0",
