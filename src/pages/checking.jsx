@@ -97,24 +97,25 @@ function CheckingGPA() {
       </div>
       <div className="w-3/4 bg-gray-100 relative">
         <div className="w-full h-[calc(100vh_-_9.5rem)]">
-          <div className="w-full h-full bg-red-200" ref={mapRef}></div>
+          {/* <div className="w-full h-full bg-red-200" ref={mapRef}></div> */}
+          {/* MAPVIEW */}
         </div>
 
         <div className="bg-white rounded-md absolute top-1/3 left-10">
           <div className="flex justify-between items-center p-3">
             <div className="flex space-x-2">
-              <FiShare2 className="w-6 h-auto" />
-              <h2>Bagikan</h2>
+              <FiShare2 className="w-6 h-auto text-[#0748A3]" />
+              <h2 className="font-poppins font-semibold">Bagikan</h2>
             </div>
-            <IoMdClose className="w-6 h-6" />
+            <IoMdClose className="w-6 h-6 text-[#9E9E9E]" />
           </div>
           <form>
-            <div className="border-y-2">
-              <h2 className="font-poppins p-3">
+            <div className="border-y-2 p-3 space-y-2">
+              <h2 className="font-poppins">
                 Apakah anda ingin membagi data yang telah diunggah ke publik ?{" "}
               </h2>
 
-              <div>
+              <div className="space-x-2">
                 <input
                   type="radio"
                   value={"shareon"}
@@ -124,7 +125,7 @@ function CheckingGPA() {
                 />
                 <label htmlFor="shareyes">Ya, bagikan ke publik</label>
               </div>
-              <div>
+              <div className="space-x-2">
                 <input
                   type="radio"
                   value={"shareoff"}

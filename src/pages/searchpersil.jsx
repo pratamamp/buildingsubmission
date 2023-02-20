@@ -7,7 +7,7 @@ function SearchPersil() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate("/submission/3");
+    navigate("/submission/2");
   };
   return (
     <div className="flex">

@@ -13,8 +13,8 @@ function App() {
       <Route path="/submission" element={<SubmitLayout />}>
         {/* <Route index element={<SubmissionPage />} /> */}
         <Route index element={<SearchPersil />} />
-        <Route path="/submission/3" element={<UploadFiles />} />
-        <Route path="/submission/4" element={<CheckingGPA />} />
+        <Route path="/submission/2" element={<UploadFiles />} />
+        <Route path="/submission/3" element={<CheckingGPA />} />
       </Route>
     </Routes>
   );

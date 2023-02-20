@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 function UploadFiles() {
   const [showLoading, setShowLoading] = useState(false);
   const [loadingFinished, setFinishedLoading] = useState(false);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const inputRef = useRef(null);
   const lottieRef = useRef();
   const lottieendRef = useRef();
@@ -25,7 +25,7 @@ function UploadFiles() {
   function handleNavigation(e) {
     e.preventDefault();
     e.target.disable;
-    loadingFinished && !error ? navigate("/submission/4") : "";
+    loadingFinished && !error ? navigate("/submission/3") : "";
   }
 
   function handleUpload(event) {
