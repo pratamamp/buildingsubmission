@@ -7,10 +7,6 @@ import { BsCheckLg } from "react-icons/bs";
 function SubmitLayout() {
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
-
   return (
     <div className="">
       {/* topbar */}

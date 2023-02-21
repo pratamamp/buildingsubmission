@@ -11,7 +11,7 @@ function SearchPersil() {
 
         // if (dataPersil.objectid === 17 || dataPersil.objectid === 30 || dataPersil.objectid === 44 || dataPersil.objectid === 184) {
         //     localStorage.setItem("persilId", dataPersil.objectid);
-            navigate("/submission/3");
+        navigate("/submission/2");
         // }
     };
     return (
