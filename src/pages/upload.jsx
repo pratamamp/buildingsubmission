@@ -116,12 +116,12 @@ function UploadFiles() {
                   Sudah dilakukan geo-referensi
                 </h2>
               </div>
-              <div className="items-center flex space-x-3 py-3">
-                <BiTargetLock className="w-6 h-6 text-[#12519E]" />
-                <h2 className="text-[#717171]">
-                  Menggunakan sistem koordinat wgs 1984
-                </h2>
-              </div>
+              {/*<div className="items-center flex space-x-3 py-3">*/}
+              {/*  <BiTargetLock className="w-6 h-6 text-[#12519E]" />*/}
+              {/*  <h2 className="text-[#717171]">*/}
+              {/*    Menggunakan sistem koordinat wgs 1984*/}
+              {/*  </h2>*/}
+              {/*</div>*/}
               <div className="flex items-center space-x-3 py-3">
                 <BsFileEarmarkText className="w-7 h-7 text-[#12519E]" />
                 <h2 className="text-[#717171]">
@@ -133,15 +133,15 @@ function UploadFiles() {
                 <h2 className="text-[#717171]">Ketentuan lainnya</h2>
               </div>
 
-              <div className="text-xs pt-5">
-                <h2 className="font-bold text-sm">Perhatian !</h2>
-                <p className="mt-3 text-red-600">
-                  Proses pengunggahan model 3D dapat memakan waktu yang cukup
-                  lama, sesuai dengan besaran data.​ Anda akan menerima
-                  notifikasi dan link untuk menampilkan data via email apabila
-                  proses unggah sudah selesai.​
-                </p>
-              </div>
+              {/*<div className="text-xs pt-5">*/}
+              {/*  <h2 className="font-bold text-sm">Perhatian !</h2>*/}
+              {/*  <p className="mt-3 text-red-600">*/}
+              {/*    Proses pengunggahan model 3D dapat memakan waktu yang cukup*/}
+              {/*    lama, sesuai dengan besaran data.​ Anda akan menerima*/}
+              {/*    notifikasi dan link untuk menampilkan data via email apabila*/}
+              {/*    proses unggah sudah selesai.​*/}
+              {/*  </p>*/}
+              {/*</div>*/}
             </div>
           </div>
           {/*
@@ -227,7 +227,7 @@ function UploadFiles() {
                   <div className="font-poppins text-xs my-5">
                     <p className="text-[#37474F]">
                       <span className="font-bold">
-                        Taruh file .SKP atau .RVT disini
+                        Taruh file .ZIP dengan konten file .GLB dan .SKP atau .RVT disini
                       </span>{" "}
                       atau klik untuk menggunggah
                     </p>

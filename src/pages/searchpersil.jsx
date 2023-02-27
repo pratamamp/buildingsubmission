@@ -23,7 +23,7 @@ function SearchPersil() {
                         Pilih Lokasi
                     </h2>
                     <p className="font-poppins my-2 text-[1rem] text-[#5C5C5C]">
-                        Pilih Atau Cari Persil Tanah Untuk Pengajuan Melalui Peta Yang
+                        Pilih Atau Cari Persil Tanah Untuk Menempatkan Data 3D Anda Melalui Peta Yang
                         Tersedia
                     </p>
                     <table className="table-fixed w-full text-left text-[#424242] text-poppins font-poppins">
@@ -51,7 +51,7 @@ function SearchPersil() {
                 {!dataPersil ? (
                     <div className="w-full flex flex-grow items-center justify-center px-5 border-b-2">
                         <h2 className="font-poppins text-[#12519E] text-center">
-                            Anda Belum Memilih Lokasi Untuk Pengajuan IMB
+                            Anda Belum Memilih Lokasi Untuk Menempatkan Data 3D
                         </h2>
                     </div>
                 ) : (

@@ -40,7 +40,7 @@ function Home() {
               <Link to="/">Beranda</Link>
             </li>
             <li className="pb-2">
-              <Link to="/submission">Submit Izin</Link>
+              <Link to="/submission">Input Data 3D</Link>
             </li>
             <li className="pb-2">
               <Link to="#">Tata Cara</Link>

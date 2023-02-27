@@ -13,6 +13,7 @@ import {FiShare2} from "react-icons/fi";
 import {IoMdClose} from "react-icons/io";
 import Camera from "@arcgis/core/Camera.js";
 import Point from "@arcgis/core/geometry/Point.js";
+import esriConfig from "@arcgis/core/config.js";
 
 function CheckingGPA() {
     const navigate = useNavigate();
@@ -27,13 +28,15 @@ function CheckingGPA() {
         e.preventDefault();
         console.log(sharePublic);
     }
+    esriConfig.apiKey =
+        "AAPK4b3895d07794469dbd57a083f1ac4fa52nP3iH2KjKBQ2wRSVFdz17o7vuCF-lo_yMcmcIDhijUKcuRGC_oNSu5JKRBZDjYn";
 
     const mapRef = useRef();
 
     const glbName = localStorage.getItem("glbFilename")
 
     const pointLayer = new FeatureLayer({
-        url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/0",
+        url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/68",
         renderer: {
             type: "simple",  // autocasts as new SimpleRenderer()
             symbol: {
@@ -47,6 +50,12 @@ function CheckingGPA() {
                         }
                     }
                 ],
+            }
+        },
+        elevationInfo: {
+            mode: "relative-to-ground",
+            featureExpressionInfo: {
+                expression: "Geometry($feature).z = 0"
             }
         }
     });
@@ -75,8 +84,11 @@ function CheckingGPA() {
                 map: webscene,
                 container: mapRef.current,
             }).when((currentView) => {
-                webscene.layers.add(buildingLayer);
+                // webscene.layers.add(buildingLayer);
                 const layerList = new LayerList({
+                    view: currentView,
+                });
+                const editor = new Editor({
                     view: currentView,
                 });
                 // currentView.goTo(new Camera({
@@ -91,23 +103,24 @@ function CheckingGPA() {
                 // }))
                 // currentView.ui.empty("top-left");
                 currentView.ui.add(layerList, "top-right");
+                currentView.ui.add(editor, "bottom-right");
 
-                buildingLayer.when(() => {
-                    buildingLayer.allSublayers.forEach((layer) => {
-                        switch (layer.modelName) {
-                            case "FullModel":
-                                layer.visible = true;
-                                break;
-                            case "Overview":
-                            case "Rooms":
-                                layer.visible = false;
-                                break;
-                            // Extract the layers that should not be hidden by the slice widget
-                            default:
-                                layer.visible = true;
-                        }
-                    });
-                });
+                // buildingLayer.when(() => {
+                //     buildingLayer.allSublayers.forEach((layer) => {
+                //         switch (layer.modelName) {
+                //             case "FullModel":
+                //                 layer.visible = true;
+                //                 break;
+                //             case "Overview":
+                //             case "Rooms":
+                //                 layer.visible = false;
+                //                 break;
+                //             // Extract the layers that should not be hidden by the slice widget
+                //             default:
+                //                 layer.visible = true;
+                //         }
+                //     });
+                // });
             });
         }
     }, []);

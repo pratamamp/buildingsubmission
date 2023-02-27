@@ -20,7 +20,7 @@ function SubmitLayout() {
               <Link to="/">Beranda</Link>
             </li>
             <li className="">
-              <Link to="/submission">Submit Izin</Link>
+              <Link to="/submission">Input Data 3D</Link>
             </li>
             <li>
               <Link to="#">Tata Cara</Link>

@@ -23,7 +23,7 @@ export const PersilMap = ({ className, setDataPersil, setMouseCoord }) => {
     //   url: "https://jakartasatu.jakarta.go.id/server/rest/services/Peta_OPS_Permen14_2020/Peta_OPS_Permen_14_2020/MapServer/0"
     // })
     const locationFeature = new FeatureLayer({
-      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/0",
+      url: "https://demo.esriindonesia.co.id/arcgis/rest/services/Hosted/KoordinatGedung_1/FeatureServer/68",
     });
 
     const map = new Map({
@@ -44,7 +44,7 @@ export const PersilMap = ({ className, setDataPersil, setMouseCoord }) => {
 
     const editor = new Editor({
       view: view,
-      allowedWorkflows: "create",
+      // allowedWorkflows: "create",
       snappingOptions: {
         enabled: false,
         featureSources: [{ layer: locationFeature }],
